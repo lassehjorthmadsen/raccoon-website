@@ -97,6 +97,15 @@ main table th {
   .rb-app { grid-template-columns: 1fr; }
 }
 
+/* The page theme places some element types into its own named grid lines —
+   aside, figure and friends are margin-note candidates in Quarto's article
+   layout. Those line names do not exist in this grid, and an item asking for
+   them lands in an implicit track that squeezes the board. Keep every child in
+   the flow this grid defines. */
+.rb-app > * {
+  grid-column: auto;
+}
+
 .rb-board {
   width: 100%;
   height: auto;
