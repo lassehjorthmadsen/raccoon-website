@@ -18,14 +18,6 @@ import { renderAnalysis, renderLog } from "./ui/analysis.js";
 const MODEL_URL = new URL("./models/exp018-ep22-fp32.onnx", import.meta.url).href;
 const META_URL = new URL("./models/exp018-ep22.meta.json", import.meta.url).href;
 
-for (const container of document.querySelectorAll(".raccoon-app")) {
-  try {
-    mount(container, container.dataset.mode ?? "play");
-  } catch (error) {
-    container.innerHTML = `<p class="rb-error">The board failed to start: ${error.message}</p>`;
-  }
-}
-
 function mount(container, mode) {
   const analysing = mode === "analyse";
   container.classList.add("raccoon-app--ready");
@@ -219,5 +211,15 @@ class EngineClient {
     this.#pending.delete(message.id);
     if (message.ok) waiting.resolve(message.result);
     else waiting.reject(new Error(message.error));
+  }
+}
+
+// Bootstrap last: `class` declarations are not hoisted the way functions are,
+// so mounting before EngineClient is evaluated throws on its own definition.
+for (const container of document.querySelectorAll(".raccoon-app")) {
+  try {
+    mount(container, container.dataset.mode ?? "play");
+  } catch (error) {
+    container.innerHTML = `<p class="rb-error">The board failed to start: ${error.message}</p>`;
   }
 }
