@@ -60,7 +60,10 @@ function template(analysing) {
   return `
     <div class="rb-app">
       <svg class="rb-board" role="img" aria-label="Backgammon board"></svg>
-      <aside class="rb-panel">
+      <!-- A div, not an <aside>: Quarto styles aside elements as margin notes
+           and places them in named grid lines that do not exist here, which
+           collapses the board to a thumbnail. -->
+      <div class="rb-panel" role="complementary">
         <p class="rb-status" role="status"></p>
         <div class="rb-controls">
           <button type="button" data-act="roll" class="rb-btn rb-btn--primary">Roll</button>
@@ -83,7 +86,7 @@ function template(analysing) {
         }
         <div class="rb-analysis"></div>
         <div class="rb-log"></div>
-      </aside>
+      </div>
     </div>`;
 }
 
