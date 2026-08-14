@@ -74,7 +74,7 @@
     "href": "contact.html",
     "title": "Contact",
     "section": "",
-    "text": "Email — hello@raccoonbg.com\nCode and issues — github.com/lassehjorthmadsen/raccoon. Bug reports and questions about the engine are best filed as issues.\nResearch write-ups — research.raccoonbg.com\nWe are especially interested in hearing from:\n\nBackgammon players and analysts with labelled position sets, rollout archives, or match databases we could benchmark against.\nResearchers working on stochastic games, distillation, or search-free evaluation.\nTool authors who would like to embed the engine — the Raccoon Game Protocol is a UCI-style text protocol built for exactly that. See Engine.\n\n\nTekst og tal · CVR 34101302 ·\nDenmark"
+    "text": "Email — hello@raccoonbg.com\nCode and issues — github.com/lassehjorthmadsen/raccoon. Bug reports and questions about the engine are best filed as issues.\nResearch write-ups — research.raccoonbg.com\nWe are especially interested in hearing from:\n\nBackgammon players and analysts with labelled position sets, rollout archives, or match databases we could benchmark against.\nResearchers working on stochastic games, distillation, or search-free evaluation.\nTool authors who would like to embed the engine — the Raccoon Game Protocol is a UCI-style text protocol built for exactly that. See Engine.\n\n\nTekst og tal · CVR 34101302 · Denmark"
   },
   {
     "objectID": "analyse.html",
