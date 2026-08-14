@@ -3,14 +3,13 @@ project:
   output-dir: _site
   # app/ is copied verbatim — the engine is plain ES modules, no bundler.
   #
-  # There is deliberately no CNAME file in this repo yet. raccoonbg.com still
-  # belongs to the research repo, and only one repository may claim a domain;
-  # until it is released this site lives at
-  # lassehjorthmadsen.github.io/raccoon-website. The domain flip adds a CNAME
-  # file containing `raccoonbg.com` and lists it here — it must be build
-  # output, because quarto-actions/publish force-pushes _site to gh-pages and
-  # would wipe a CNAME that only existed on the branch. See README.md.
+  # CNAME must be build output: quarto-actions/publish force-pushes _site to
+  # gh-pages on every deploy, so a CNAME written only by the Pages setting is
+  # wiped on the next build. The research site released raccoonbg.com when its
+  # own CNAME moved to research.raccoonbg.com — only one repo may claim a
+  # domain.
   resources:
+    - CNAME
     - app/**
   render:
     - "*.qmd"
