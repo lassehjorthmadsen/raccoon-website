@@ -1,0 +1,14 @@
+{
+  "name": "raccoon-website",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "raccoonbg.com \u2014 the Raccoon backgammon engine, playable and analysable in the browser",
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "serve": "quarto preview"
+  },
+  "devDependencies": {
+    "onnxruntime-node": "^1.20.0"
+  }
+}

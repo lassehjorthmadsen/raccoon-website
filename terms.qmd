@@ -1,0 +1,24 @@
+---
+title: "Terms of use"
+---
+
+*Last updated: 13 August 2026*
+
+Raccoon Backgammon is provided free of charge by {{< var company.name >}}
+(CVR {{< var company.cvr >}}, {{< var company.country >}}).
+
+**The engine is open source.** The source code, training pipelines and network
+weights are published under the [MIT licence](https://github.com/lassehjorthmadsen/raccoon/blob/main/LICENSE).
+You may use, modify and redistribute them on those terms, including
+commercially.
+
+**This website is provided as is.** It runs entirely in your browser and makes
+no guarantee of availability, accuracy or fitness for a particular purpose. The
+engine plays *cubeless money-game* backgammon and does not yet handle the
+doubling cube; its analysis is a research tool, not authoritative instruction.
+
+**No warranty, no liability.** To the extent permitted by law,
+{{< var company.name >}} is not liable for any loss arising from use of this
+site or the engine.
+
+**Contact** — [{{< var company.email >}}](mailto:{{< var company.email >}}).

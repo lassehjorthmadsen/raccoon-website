@@ -1,0 +1,28 @@
+# Company and product facts rendered into the pages via {{< var ... >}}.
+# The Google for Startups application is checked against these, and Danish law
+# requires the company name and CVR to appear on the site, so keep them exact.
+company:
+  name: "Tekst og tal"
+  cvr: "34101302"
+  country: "Denmark"
+  email: "hello@raccoonbg.com"
+  domain: "raccoonbg.com"
+
+founder:
+  name: "Lasse Hjorth Madsen"
+  role: "Founder — data scientist and freelance journalist"
+  photo: "app/assets/founder.jpg"
+  site: "https://tekstogtal.dk"
+  github: "https://github.com/lassehjorthmadsen"
+  linkedin: "https://www.linkedin.com/in/lassehjorthmadsen/"
+  cvr_record: "https://datacvr.virk.dk/enhed/virksomhed/34101302"
+
+engine:
+  network: "exp018-ep22"
+  params: "11.9M"
+  pr: "0.95"
+  pr_n: "14,693"
+  gnubg_0ply_pr: "2.14"
+  gnubg_2ply_pr: "0.56"
+  ppg_edge: "+0.046 ± 0.005"
+  ppg_n: "6,000"

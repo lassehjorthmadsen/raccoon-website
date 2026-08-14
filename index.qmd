@@ -1,0 +1,65 @@
+---
+title: "Raccoon Backgammon"
+subtitle: "A modern neural engine you can play in your browser"
+pagetitle: "Raccoon Backgammon — play and analyse against a modern neural engine"
+---
+
+::: {.lead}
+Backgammon's strongest engines were built in the 1990s. Raccoon is a rebuild
+with the methods that have since transformed chess and Go — a deep residual
+network trained by large-scale distillation — and it runs entirely in your
+browser. No account, no server, nothing to install.
+:::
+
+::: {.raccoon-app data-mode="play"}
+:::
+
+::: {.app-fallback}
+The board above needs JavaScript and WebAssembly. Everything else on this site
+works without them, and the engine also runs [in a terminal](engine.qmd).
+:::
+
+## What it does
+
+- **Play** a full cubeless money game against the engine — [full-size board](play.qmd).
+- **Analyse** any position: ranked candidate moves, cubeless equity, and the
+  win/gammon/backgammon split — [open the analyser](analyse.qmd).
+- **Bring your own positions** with XGID import and export, the format XG and
+  GNU Backgammon already speak.
+
+Everything happens on your machine: the network's weights are downloaded once
+and evaluated locally, so nothing you play is ever sent anywhere.
+
+## How strong is it
+
+Scored on the BGSage money benchmark — {{< var engine.pr_n >}} checker decisions
+with rollout-quality references. PR is mean move-selection error × 500; lower is
+better.
+
+| Engine | Compute per decision | PR ({{< var engine.pr_n >}} decisions) |
+|---|---|---|
+| GNU Backgammon, 2-ply full-width search | ~1.3 s | **{{< var engine.gnubg_2ply_pr >}}** |
+| **Raccoon, single network evaluation** | ~10 ms | **{{< var engine.pr >}}** |
+| GNU Backgammon, single network evaluation | ~10 ms | **{{< var engine.gnubg_0ply_pr >}}** |
+
+At equal cost Raccoon's checker play is well past GNU Backgammon's own network,
+and it has closed most of the distance to GNU Backgammon's 2-ply search while
+doing no search at all. In direct play it wins {{< var engine.ppg_edge >}} points
+per game against GNU Backgammon at 0-ply over {{< var engine.ppg_n >}} games —
+measured with [variance-reduced rollouts](https://research.raccoonbg.com/variance_reduction.html),
+which read the same games seven times more precisely than counting points does.
+
+The engine in your browser is the measured engine, not a cut-down version of it:
+the exported network scores PR 0.9500 on the benchmark against 0.9498 for the
+PyTorch checkpoint it came from.
+
+The honest caveat: this is **checker play only, cubeless**. The doubling cube —
+half of competitive backgammon — is the next milestone.
+
+## Where it comes from
+
+Raccoon is built by [{{< var company.name >}}](team.qmd), a one-person company in
+{{< var company.country >}}. Every experiment behind the engine is published with
+its hypothesis, primary metric, sample size and result — including the failures —
+at [research.raccoonbg.com](https://research.raccoonbg.com). The engine itself is
+[open source](engine.qmd) under the MIT licence.

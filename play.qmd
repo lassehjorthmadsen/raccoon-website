@@ -1,0 +1,21 @@
+---
+title: "Play Raccoon"
+subtitle: "Cubeless money game, in your browser"
+---
+
+::: {.raccoon-app data-mode="play" data-size="full"}
+:::
+
+::: {.app-fallback}
+The board needs JavaScript and WebAssembly. The same engine runs
+[in a terminal](engine.qmd) if you would rather not use a browser.
+:::
+
+**How to play.** Roll, then click a checker and its destination. The engine
+replies immediately and shows what it thought of your move. Everything runs on
+your machine — the network is downloaded once and evaluated locally.
+
+**Rules in force.** Cubeless money game: gammons and backgammons count double
+and triple, and there is no doubling cube yet. The engine picks its move by
+evaluating every legal play with one forward pass of the network — the same
+0-ply value lookahead the [published strength numbers](engine.qmd) measure.

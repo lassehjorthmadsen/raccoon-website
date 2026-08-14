@@ -1,0 +1,54 @@
+project:
+  type: website
+  output-dir: _site
+  # app/ is copied verbatim — the engine is plain ES modules, no bundler.
+  #
+  # There is deliberately no CNAME file in this repo yet. raccoonbg.com still
+  # belongs to the research repo, and only one repository may claim a domain;
+  # until it is released this site lives at
+  # lassehjorthmadsen.github.io/raccoon-website. The domain flip adds a CNAME
+  # file containing `raccoonbg.com` and lists it here — it must be build
+  # output, because quarto-actions/publish force-pushes _site to gh-pages and
+  # would wipe a CNAME that only existed on the branch. See README.md.
+  resources:
+    - app/**
+  render:
+    - "*.qmd"
+
+website:
+  title: "Raccoon Backgammon"
+  description: "A modern neural engine for backgammon — play it and analyse positions in your browser"
+  site-url: https://raccoonbg.com
+  favicon: app/assets/favicon.svg
+  open-graph: true
+  twitter-card: true
+  page-footer:
+    left: "**{{< var company.name >}}** · CVR {{< var company.cvr >}} · {{< var company.country >}}"
+    center: "[{{< var company.email >}}](mailto:{{< var company.email >}})"
+    right: "[Privacy](privacy.qmd) · [Terms](terms.qmd) · [Research](https://research.raccoonbg.com)"
+  navbar:
+    title: "Raccoon Backgammon"
+    left:
+      - text: "Play"
+        file: play.qmd
+      - text: "Analyse"
+        file: analyse.qmd
+      - text: "Engine"
+        file: engine.qmd
+      - text: "Research"
+        href: https://research.raccoonbg.com
+      - text: "Changelog"
+        file: changelog.qmd
+    right:
+      - text: "Team"
+        file: team.qmd
+      - text: "Contact"
+        file: contact.qmd
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: false
+    anchor-sections: false
+    include-after-body: app/loader.html

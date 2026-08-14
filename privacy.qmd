@@ -1,0 +1,40 @@
+---
+title: "Privacy"
+---
+
+*Last updated: 13 August 2026*
+
+**Raccoon Backgammon collects nothing.** There is no account to create, no
+tracking, no analytics, no advertising, and no cookies.
+
+## Where the engine runs
+
+The neural network runs **in your browser**. When you load the play or analyse
+page, your browser downloads the network's weights once and evaluates positions
+locally on your own machine. Positions you play or paste are never transmitted
+to us — there is no server to transmit them to, and no game data leaves your
+device.
+
+## What the host can see
+
+This site is static and served by GitHub Pages. Like any web host, GitHub
+receives the technical information your browser sends when requesting a page —
+IP address, user agent, and the URL requested — and may log it. That processing
+is GitHub's, described in the
+[GitHub Privacy Statement](https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement).
+We have no access to those logs and add no tracking of our own.
+
+## Email
+
+If you email [{{< var company.email >}}](mailto:{{< var company.email >}}) we
+keep the message so we can reply. We do not add you to any mailing list — there
+isn't one.
+
+## Your rights
+
+Since we hold no personal data beyond correspondence you choose to send, there
+is normally nothing to access, correct or erase. If you have written to us and
+want that correspondence deleted, ask and we will delete it.
+
+**Data controller:** {{< var company.name >}}, CVR {{< var company.cvr >}},
+{{< var company.country >}} — [{{< var company.email >}}](mailto:{{< var company.email >}}).

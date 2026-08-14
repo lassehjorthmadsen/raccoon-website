@@ -1,0 +1,64 @@
+---
+title: "Team"
+subtitle: "Who builds Raccoon"
+---
+
+Raccoon is built by **{{< var company.name >}}**, a one-person research and
+development company registered in {{< var company.country >}}
+(CVR [{{< var company.cvr >}}]({{< var founder.cvr_record >}})).
+
+::: {.founder-card}
+![]({{< var founder.photo >}}){.founder-photo fig-alt="Lasse Hjorth Madsen"}
+
+### {{< var founder.name >}} {.founder-name}
+
+{{< var founder.role >}}
+
+Lasse writes every line of Raccoon's machine-learning and search code, runs the
+experiments, and publishes each one — including the failures — on the
+[research site](https://research.raccoonbg.com). The work combines two long
+interests: applied machine learning, and backgammon, a game whose strongest
+engines have not been rebuilt with modern methods in twenty-five years. He also
+writes as a freelance journalist, for [Zetland](https://www.zetland.dk/) among
+others.
+
+Verify independently:
+
+- **LinkedIn** — [linkedin.com/in/lassehjorthmadsen]({{< var founder.linkedin >}})
+- **GitHub** — [github.com/lassehjorthmadsen]({{< var founder.github >}}) — the
+  engine, training pipelines and every experiment write-up, MIT-licensed.
+- **Danish company register (CVR)** —
+  [{{< var company.name >}}, CVR {{< var company.cvr >}}]({{< var founder.cvr_record >}}) —
+  the official public record of the company behind this site.
+- **Personal site** — [tekstogtal.dk]({{< var founder.site >}})
+- **Email** — [{{< var company.email >}}](mailto:{{< var company.email >}})
+:::
+
+## How we work
+
+**Everything is measured, and everything is published.** Each experiment states
+one hypothesis, fixes one primary metric before the run, and reports every
+checkpoint against it with sample sizes and confidence intervals. The write-ups
+include the experiments that failed, the conclusions later retracted, and the
+measurement bugs found in our own evaluation code. In a domain where effect
+sizes are small and noise is large, a result without its error bar is not a
+result.
+
+**The code is open.** The engine, training pipelines and evaluation harnesses
+are MIT-licensed and public. Game rules come from
+[OpenSpiel](https://openspiel.readthedocs.io/); every line of the machine
+learning and search code is written from scratch.
+
+**Training runs on Google Cloud** — preemptible GPU instances for network
+training, Cloud Storage for datasets and checkpoints.
+
+## Company details
+
+| | |
+|---|---|
+| Legal name | {{< var company.name >}} |
+| Registration | CVR {{< var company.cvr >}} ([public record]({{< var founder.cvr_record >}})) |
+| Country | {{< var company.country >}} |
+| Contact | [{{< var company.email >}}](mailto:{{< var company.email >}}) |
+| Product | Raccoon Backgammon — [play it here](play.qmd) |
+| Status | Pre-revenue research and development; the engine is free and open source |

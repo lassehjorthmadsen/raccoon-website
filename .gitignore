@@ -1,0 +1,12 @@
+_site/
+.quarto/
+node_modules/
+.DS_Store
+
+# The exported network and the ONNX Runtime build are large binaries produced by
+# scripts/export_web_model.py in the raccoon repo and by vendor-ort. They ARE
+# committed (the site cannot work without them) — this file only lists the
+# intermediates that are not.
+*.prep.onnx
+
+/.quarto/

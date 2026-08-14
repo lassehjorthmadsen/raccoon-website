@@ -1,0 +1,67 @@
+---
+title: "The engine"
+subtitle: "Run Raccoon locally, or embed it in your own tool"
+---
+
+The engine that plays you in the browser is the same one you can download and
+run yourself. It is MIT-licensed and written in Python and PyTorch, with game
+rules from [OpenSpiel](https://openspiel.readthedocs.io/).
+
+## Install
+
+```bash
+git clone https://github.com/lassehjorthmadsen/raccoon.git
+cd raccoon
+make setup          # editable install with dev dependencies
+make test           # run the test suite
+make play           # play against Raccoon in the terminal
+```
+
+## What the network is
+
+| | |
+|---|---|
+| Architecture | 10-block, 256-channel residual network — {{< var engine.params >}} parameters |
+| Input | A (26, 2, 12) tensor: checker planes, bar/borne-off/dice broadcasts, and handcrafted pip, blot, anchor and contact features |
+| Value head | Six mutually exclusive outcomes — win, gammon, backgammon, each way — from which cubeless equity follows |
+| Move selection | 0-ply value lookahead: every legal play is evaluated in one batched forward pass, no search |
+| Training | Supervised distillation of 40M positions labelled by GNU Backgammon's 2-ply search |
+
+## Strength
+
+Scored on the [BGSage money benchmark](https://research.raccoonbg.com) —
+{{< var engine.pr_n >}} checker decisions with rollout-quality cubeless-equity
+references. PR is mean move-selection error × 500; lower is better.
+
+| Engine | Compute per decision | PR |
+|---|---|---|
+| GNU Backgammon, 2-ply full-width search | ~1.3 s | **{{< var engine.gnubg_2ply_pr >}}** |
+| **Raccoon `{{< var engine.network >}}`, single evaluation** | ~10 ms | **{{< var engine.pr >}}** |
+| GNU Backgammon, single evaluation (0-ply) | ~10 ms | **{{< var engine.gnubg_0ply_pr >}}** |
+
+In head-to-head play against GNU Backgammon at 0-ply, Raccoon wins
+**{{< var engine.ppg_edge >}} points per game** over {{< var engine.ppg_n >}}
+cubeless money games scored with variance-reduced rollouts.
+
+Two thirds of that margin came from fixing the *search*, not the network: on a
+double the engine used to pick its four half-moves two at a time instead of
+optimising the whole turn, which cost 0.033 points per game. The browser engine
+optimises doubles jointly, like the measured one.
+
+The browser runs this network exported to ONNX. That exported file was scored on
+the same benchmark, at the same sample size, and lands on the same number
+(PR 0.9500 for the ONNX file versus 0.9498 for the PyTorch checkpoint,
+n = {{< var engine.pr_n >}}) — so the engine you play here is the engine that was
+measured, not a reduced version of it.
+
+**What it does not do yet:** the doubling cube. Play here and in the CLI is
+cubeless money game. Cube handling is the next milestone.
+
+## Embedding it
+
+The engine speaks the Raccoon Game Protocol, a UCI-style line protocol over
+stdin/stdout intended for analysis GUIs. See
+[`raccoon/protocol/rgp.py`](https://github.com/lassehjorthmadsen/raccoon/blob/main/raccoon/protocol/rgp.py)
+and the [architecture notes](https://research.raccoonbg.com/architecture.html).
+If you are building a tool and want to embed Raccoon,
+[get in touch](contact.qmd).

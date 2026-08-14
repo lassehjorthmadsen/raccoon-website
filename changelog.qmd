@@ -1,0 +1,46 @@
+---
+title: "Changelog"
+subtitle: "What shipped, when"
+---
+
+## 2026-08 — Raccoon plays in the browser
+
+- The `{{< var engine.network >}}` network runs client-side via ONNX Runtime
+  Web: play a full cubeless money game, or analyse any position, with no server
+  and no account.
+- Analysis panel showing ranked candidate moves with cubeless equity and the
+  win/gammon/backgammon split from the six-outcome value head.
+- XGID import and export, so positions move between Raccoon and existing
+  backgammon tools.
+- The exported network was re-scored on the BGSage benchmark to confirm the
+  browser engine matches the measured one (PR 0.9500 vs 0.9498,
+  n = {{< var engine.pr_n >}}).
+
+## 2026-08 — A doubles bug worth 0.033 points per game
+
+- On a double, the engine was choosing its four half-moves two at a time rather
+  than optimising the turn as a whole. It cost 0.062 points on the one doubles
+  turn in six where the difference mattered. Fixing the search — with no change
+  to the network — took the margin over GNU Backgammon at 0-ply from
+  +0.013 to {{< var engine.ppg_edge >}} points per game.
+  [How it was found](https://research.raccoonbg.com/variance_reduction.html#exp020).
+  The browser engine plays the fixed way.
+
+## 2026-08 — First head-to-head win over GNU Backgammon
+
+- Variance-reduced rollouts put `{{< var engine.network >}}` ahead of GNU
+  Backgammon at 0-ply over {{< var engine.ppg_n >}} games — the first time a
+  Raccoon network has been shown to beat the teacher it was distilled from in
+  actual play. The plain average over the same games settles nothing at
+  ±0.035; the variance reduction is worth about 55× as many games.
+  [Method and result](https://research.raccoonbg.com/variance_reduction.html).
+
+## 2026-08 — 40M-position distillation
+
+- Scaling 2-ply distillation from 8M to 40M positions cut move-selection error
+  from PR 2.16 to 0.93 and brought value accuracy to teacher level, with no
+  trade-off across game plans.
+  [Write-up](https://research.raccoonbg.com/pretraining_analysis.html).
+
+*Every experiment behind these releases is published in full, including the ones
+that failed, at [research.raccoonbg.com](https://research.raccoonbg.com).*
