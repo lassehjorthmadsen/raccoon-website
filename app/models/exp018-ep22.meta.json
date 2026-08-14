@@ -1,0 +1,67 @@
+{
+  "source_checkpoint": "experiments/exp018-distill/checkpoints/ep22.pt",
+  "config": {
+    "channels": 256,
+    "num_blocks": 10,
+    "in_channels": 26,
+    "board_h": 2,
+    "board_w": 12,
+    "num_actions": 1352,
+    "feature_channels": null,
+    "input_bn": false,
+    "value_head": "outcomes6"
+  },
+  "channels": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "board_shape": [
+    26,
+    2,
+    12
+  ],
+  "value_head": "outcomes6",
+  "outputs": [
+    "equity",
+    "probs"
+  ],
+  "outcome_points": [
+    1.0,
+    2.0,
+    3.0,
+    -1.0,
+    -2.0,
+    -3.0
+  ],
+  "equity_scale": 3.0,
+  "opset": 17,
+  "files": {
+    "exp018-ep22-fp32.onnx": 47.5,
+    "exp018-ep22-int8.onnx": 12.0
+  },
+  "note": "equity is equity/3 in [-1,1] from the encoded position's to-move POV; multiply by equity_scale for money-game points. probs is the six-outcome softmax in order [win, win_g, win_bg, lose, lose_g, lose_bg]."
+}

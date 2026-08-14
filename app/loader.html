@@ -1,0 +1,9 @@
+<!-- Boots the engine UI on any page containing a .raccoon-app container.
+     Included after the body on every page (see _quarto.yml); it exits quietly
+     when the page has no container, so static pages stay static.
+
+     The path is relative, not root-absolute: the site has to work both at
+     raccoonbg.com and under a project subpath like
+     lassehjorthmadsen.github.io/raccoon-website. Every page renders at the top
+     level of the site, so "app/main.js" resolves from all of them. -->
+<script type="module" src="app/main.js"></script>

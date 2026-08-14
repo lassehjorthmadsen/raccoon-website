@@ -1,0 +1,211 @@
+/* raccoonbg.com — a thin layer over the stock `cosmo` Bootswatch theme,
+   sharing the accent colours of the research site. */
+
+:root {
+  --raccoon-accent: #c07a33;
+  --raccoon-ink: #2b2f38;
+  --raccoon-muted: #5c6370;
+  --raccoon-felt: #f3ede3;
+  --raccoon-line: #e3e6ea;
+}
+
+/* Landing-page opening paragraph. */
+.lead {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: var(--raccoon-ink);
+  border-left: 4px solid var(--raccoon-accent);
+  padding-left: 1.1rem;
+  margin: 1.6rem 0 2.2rem;
+}
+
+.quarto-title .subtitle {
+  color: var(--raccoon-muted);
+  font-weight: 400;
+}
+
+main table {
+  margin-block: 1.2rem 1.8rem;
+}
+
+main table td,
+main table th {
+  padding: 0.5rem 0.8rem;
+}
+
+.nav-footer {
+  border-top: 1px solid var(--raccoon-line);
+  font-size: 0.9rem;
+  color: var(--raccoon-muted);
+}
+
+/* --- The engine UI ------------------------------------------------------- */
+
+/* The container is styled here rather than in JS so the page reserves its
+   space before the engine loads and the layout doesn't jump. */
+.raccoon-app {
+  margin: 1.5rem 0 2rem;
+  min-height: 420px;
+  border: 1px solid var(--raccoon-line);
+  border-radius: 10px;
+  background: var(--raccoon-felt);
+  overflow: hidden;
+}
+
+.raccoon-app[data-size="full"] {
+  min-height: 520px;
+}
+
+/* Shown only when the app never boots (no JS, no WebAssembly). The script
+   hides it as soon as it takes over the container. */
+.app-fallback {
+  font-size: 0.95rem;
+  color: var(--raccoon-muted);
+  margin-bottom: 2rem;
+}
+
+.raccoon-app--ready + .app-fallback {
+  display: none;
+}
+
+.founder-card {
+  border: 1px solid var(--raccoon-line);
+  border-left: 4px solid var(--raccoon-accent);
+  border-radius: 8px;
+  padding: 1.2rem 1.4rem 0.6rem;
+  margin: 1.5rem 0 2rem;
+  background: #fbfaf8;
+}
+
+.founder-name {
+  margin-top: 0;
+}
+
+/* --- Board ---------------------------------------------------------------
+   The SVG carries no colours of its own; everything is styled here so the
+   board matches the rest of the site and stays legible when scaled down. */
+
+.rb-app {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(260px, 1fr);
+  gap: 1rem;
+  padding: 1rem;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .rb-app { grid-template-columns: 1fr; }
+}
+
+.rb-board {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.bg-frame { fill: #6b4b2a; }
+.bg-felt { fill: #f0e6d6; }
+.bg-bar { fill: #6b4b2a; }
+.bg-tray { fill: #5c4023; }
+
+.bg-point { stroke: rgba(0, 0, 0, 0.12); stroke-width: 1; }
+.bg-point--dark { fill: #c9a06a; }
+.bg-point--light { fill: #e6d3b3; }
+.bg-point--target { fill: #7fb069; fill-opacity: 0.55; }
+
+.bg-hit { fill: transparent; cursor: pointer; }
+
+.bg-checker { stroke: rgba(0, 0, 0, 0.35); stroke-width: 1.5; }
+.bg-checker--mine { fill: #fbf7f0; }
+.bg-checker--theirs { fill: #2b2f38; }
+.bg-checker--selected { stroke: var(--raccoon-accent); stroke-width: 4; }
+
+.bg-count { font: 600 20px system-ui, sans-serif; text-anchor: middle; }
+.bg-count--mine { fill: #2b2f38; }
+.bg-count--theirs { fill: #fbf7f0; }
+
+.bg-pointno { font: 500 13px system-ui, sans-serif; fill: #5c4023; text-anchor: middle; }
+.bg-tray-label { font: 600 13px system-ui, sans-serif; fill: #f0e6d6; text-anchor: middle; }
+.bg-borne--mine { fill: #fbf7f0; }
+.bg-borne--theirs { fill: #2b2f38; }
+.bg-pips { font: 600 15px system-ui, sans-serif; fill: #f0e6d6; text-anchor: middle; }
+.bg-pips--muted { fill: #bfae95; }
+
+.bg-die { fill: #fbf7f0; stroke: rgba(0, 0, 0, 0.3); }
+.bg-die-pip { fill: #2b2f38; }
+
+/* --- Side panel ---------------------------------------------------------- */
+
+.rb-panel { font-size: 0.92rem; }
+
+.rb-status {
+  min-height: 1.6em;
+  margin: 0 0 0.6rem;
+  font-weight: 600;
+  color: var(--raccoon-ink);
+}
+
+.rb-controls { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.9rem; }
+
+.rb-btn {
+  border: 1px solid #c9b79a;
+  background: #fff;
+  color: var(--raccoon-ink);
+  border-radius: 6px;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.rb-btn:hover:not(:disabled) { border-color: var(--raccoon-accent); }
+.rb-btn:disabled { opacity: 0.45; cursor: default; }
+.rb-btn--primary { background: var(--raccoon-accent); border-color: var(--raccoon-accent); color: #fff; }
+
+.rb-xgid { margin-bottom: 0.9rem; }
+.rb-xgid label { display: block; font-size: 0.8rem; color: var(--raccoon-muted); margin-bottom: 0.2rem; }
+.rb-xgid-input {
+  width: 100%;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.75rem;
+  padding: 0.35rem 0.5rem;
+  border: 1px solid #c9b79a;
+  border-radius: 6px;
+}
+.rb-xgid-actions { display: flex; gap: 0.4rem; margin-top: 0.4rem; }
+
+.rb-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin: 0 0 0.5rem; }
+.rb-table th {
+  text-align: left;
+  font-weight: 600;
+  color: var(--raccoon-muted);
+  border-bottom: 1px solid var(--raccoon-line);
+  padding: 0.25rem 0.35rem;
+}
+.rb-table td { padding: 0.25rem 0.35rem; border-bottom: 1px solid #efe9df; }
+.rb-rank { color: var(--raccoon-muted); }
+.rb-move { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+.rb-eq, .rb-loss, .rb-win, .rb-gam { text-align: right; font-variant-numeric: tabular-nums; }
+.rb-loss { color: #a5462f; }
+.rb-row--played { background: #fdf6ea; }
+
+.rb-note { font-size: 0.78rem; color: var(--raccoon-muted); margin: 0.3rem 0 0.6rem; }
+
+.rb-log-list { list-style: none; padding: 0; margin: 0.4rem 0 0; font-size: 0.82rem; }
+.rb-log-list li { display: flex; gap: 0.5rem; padding: 0.12rem 0; }
+.rb-log-who { width: 4.2rem; color: var(--raccoon-muted); }
+.rb-log-who--human { color: var(--raccoon-accent); }
+.rb-log-dice { width: 1.8rem; font-variant-numeric: tabular-nums; }
+.rb-log-move { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+
+.rb-error { padding: 1rem; color: #a5462f; }
+
+.founder-photo {
+  float: right;
+  width: 132px;
+  border-radius: 8px;
+  margin: 0 0 0.8rem 1.2rem;
+}
+
+@media (max-width: 560px) {
+  .founder-photo { float: none; display: block; margin: 0 0 1rem; }
+}
