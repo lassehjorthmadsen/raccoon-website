@@ -11,6 +11,10 @@ project:
   resources:
     - CNAME
     - app/**
+    # Redirect stubs for the research pages that used to live at this domain,
+    # plus the catch-all 404. Plain HTML, copied verbatim — the render list
+    # only picks up .qmd.
+    - "*.html"
   render:
     - "*.qmd"
 
