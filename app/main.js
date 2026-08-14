@@ -98,8 +98,14 @@ function draw(container, board, game, analysing) {
     onRoll: game.humanOnRoll ? "human" : "engine",
   });
 
-  const played = game.log.at(-1);
-  renderAnalysis(container.querySelector(".rb-analysis"), game.analysis);
+  renderAnalysis(container.querySelector(".rb-analysis"), game.analysis, {
+    caption:
+      game.analysisFor === "engine"
+        ? "What Raccoon weighed up on its move"
+        : game.analysisFor === "human"
+          ? "Your options, best first"
+          : "",
+  });
   renderLog(container.querySelector(".rb-log"), game.log);
 
   container.querySelector('[data-act="roll"]').disabled =
@@ -107,10 +113,10 @@ function draw(container, board, game, analysing) {
   container.querySelector('[data-act="undo"]').disabled = game.pending.length === 0;
   container.querySelector('[data-act="hint"]').disabled = !game.dice || game.phase === "gameover";
 
-  setStatus(container, describe(game, analysing, played));
+  setStatus(container, describe(game, analysing));
 }
 
-function describe(game, analysing, played) {
+function describe(game, analysing, played = game.log.at(-1)) {
   if (game.phase === "gameover") {
     const { points, kind } = game.result;
     const who = points > 0 ? "You win" : "Raccoon wins";
@@ -125,9 +131,7 @@ function describe(game, analysing, played) {
   if (game.midDoubles) return "Doubles — two more half-moves.";
   if (!game.humanOnRoll && !analysing) return "Raccoon is moving…";
   if (game.selected !== null) return "Now click where the checker goes.";
-  if (played?.side === "engine" && played.equity !== undefined) {
-    return `Raccoon played. Your move.`;
-  }
+  if (played?.side === "engine") return "Raccoon played. Your move.";
   return "Click a checker, then its destination.";
 }
 
@@ -202,9 +206,11 @@ class EngineClient {
     if (message.progress) {
       const { loaded, total } = message.progress;
       const mb = (bytes) => (bytes / 1e6).toFixed(0);
+      // Content-Length is the compressed size while the reader counts
+      // decompressed bytes, so clamp rather than report "47 of 44 MB".
       this.#onStatus(
         total
-          ? `Loading the network… ${mb(loaded)} of ${mb(total)} MB`
+          ? `Loading the network… ${mb(Math.min(loaded, total))} of ${mb(total)} MB`
           : `Loading the network… ${mb(loaded)} MB`,
       );
       return;

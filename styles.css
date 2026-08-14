@@ -122,6 +122,12 @@ main table th {
 .bg-point--light { fill: #e6d3b3; }
 .bg-point--target { fill: #7fb069; fill-opacity: 0.55; }
 
+/* Only the invisible hit rects take clicks. Checkers are drawn on top of them,
+   so without this a click on a checker — the obvious gesture — lands on a
+   circle with no target attached and nothing happens. */
+.rb-board * { pointer-events: none; }
+.rb-board [data-select] { pointer-events: all; }
+
 .bg-hit { fill: transparent; cursor: pointer; }
 
 .bg-checker { stroke: rgba(0, 0, 0, 0.35); stroke-width: 1.5; }
@@ -194,6 +200,8 @@ main table th {
 .rb-rank { color: var(--raccoon-muted); }
 .rb-move { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
 .rb-eq, .rb-loss, .rb-win, .rb-gam { text-align: right; font-variant-numeric: tabular-nums; }
+.rb-gam, .rb-win, .rb-eq, .rb-loss { white-space: nowrap; }
+.rb-analysis-title { font-size: 0.82rem; font-weight: 600; color: var(--raccoon-muted); margin: 0.2rem 0 0.3rem; }
 .rb-loss { color: #a5462f; }
 .rb-row--played { background: #fdf6ea; }
 
