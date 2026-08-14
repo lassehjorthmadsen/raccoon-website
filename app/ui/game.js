@@ -39,6 +39,7 @@ export class Game {
   async analyse() {
     if (!this.dice || this.phase === "gameover") return null;
     this.analysis = await this.#engine.rank(this.decisionStart, this.dice, this.midDoubles);
+    this.analysisFor = "human";
     this.#changed();
     return this.analysis;
   }
@@ -197,6 +198,7 @@ export class Game {
     this.pending = [];
     this.selected = null;
     this.analysis = null;
+    this.analysisFor = null;
 
     const plays = legalSequences(this.position, this.dice);
     if (plays.length === 1 && plays[0].moves.length === 0) {
@@ -263,6 +265,7 @@ export class Game {
 
     const ranked = await this.#engine.rank(this.position, this.dice, this.midDoubles);
     this.analysis = ranked;
+    this.analysisFor = "engine";
 
     const best = ranked[0];
     for (const move of best.moves) this.position = applyHalfMove(this.position, move);

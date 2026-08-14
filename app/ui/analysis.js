@@ -13,7 +13,7 @@ import { winProbability } from "../engine/evaluator.js";
 
 const MAX_ROWS = 8;
 
-export function renderAnalysis(container, candidates, { played = null } = {}) {
+export function renderAnalysis(container, candidates, { played = null, caption = "" } = {}) {
   if (!candidates || candidates.length === 0) {
     container.innerHTML = "";
     return;
@@ -35,8 +35,8 @@ export function renderAnalysis(container, candidates, { played = null } = {}) {
       <td class="rb-win">${candidate.probs ? formatPercent(winProbability(candidate.probs)) : "—"}</td>
       <td class="rb-gam">${
         candidate.probs
-          ? `${formatPercent(candidate.probs.winGammon + candidate.probs.winBackgammon)} / ` +
-            `${formatPercent(candidate.probs.loseGammon + candidate.probs.loseBackgammon)}`
+          ? `${percentPoints(candidate.probs.winGammon + candidate.probs.winBackgammon)} / ` +
+            `${percentPoints(candidate.probs.loseGammon + candidate.probs.loseBackgammon)}`
           : "—"
       }</td>
     </tr>`;
@@ -45,11 +45,12 @@ export function renderAnalysis(container, candidates, { played = null } = {}) {
   const hidden = candidates.length - rows.length;
 
   container.innerHTML = `
+    ${caption ? `<p class="rb-analysis-title">${escape(caption)}</p>` : ""}
     <table class="rb-table">
       <thead>
         <tr>
           <th></th><th>Play</th><th>Equity</th><th>Loss</th><th>Win</th>
-          <th title="Gammon or backgammon, won / lost">G+BG w/l</th>
+          <th title="Gammon or backgammon, won / lost (%)">G w/l</th>
         </tr>
       </thead>
       <tbody>${rows.join("")}</tbody>
@@ -73,6 +74,11 @@ export function renderLog(container, log) {
         <span class="rb-log-move">${escape(formatPlay(entry.moves))}</span></li>`;
     });
   container.innerHTML = entries.length ? `<ol class="rb-log-list">${entries.join("")}</ol>` : "";
+}
+
+/** Bare number for the paired gammon column, which is already headed "%". */
+function percentPoints(p) {
+  return (100 * p).toFixed(1);
 }
 
 function escape(text) {
