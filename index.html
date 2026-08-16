@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Raccoon Backgammon — play and analyse against a modern neural engine – Raccoon Backgammon</title>
+<title>Raccoon Backgammon — a modern neural engine you can play in your browser – Raccoon Backgammon</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -76,11 +76,11 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="styles.css">
-<meta property="og:title" content="Raccoon Backgammon — play and analyse against a modern neural engine">
-<meta property="og:description" content="A modern neural engine you can play in your browser">
+<meta property="og:title" content="Raccoon Backgammon — a modern neural engine you can play in your browser">
+<meta property="og:description" content="A modern neural engine for backgammon — free, open, and running in your browser">
 <meta property="og:site_name" content="Raccoon Backgammon">
-<meta name="twitter:title" content="Raccoon Backgammon — play and analyse against a modern neural engine">
-<meta name="twitter:description" content="A modern neural engine you can play in your browser">
+<meta name="twitter:title" content="Raccoon Backgammon — a modern neural engine you can play in your browser">
+<meta name="twitter:description" content="A modern neural engine for backgammon — free, open, and running in your browser">
 <meta name="twitter:card" content="summary">
 </head>
 
@@ -102,35 +102,40 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./play.html"> 
-<span class="menu-text">Play</span></a>
+    <a class="nav-link active" href="./index.html" aria-current="page"> 
+<span class="menu-text">What</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./analyse.html"> 
-<span class="menu-text">Analyse</span></a>
+    <a class="nav-link" href="./who.html"> 
+<span class="menu-text">Who</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./engine.html"> 
-<span class="menu-text">Engine</span></a>
+    <a class="nav-link" href="./how.html"> 
+<span class="menu-text">How</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://research.raccoonbg.com"> 
-<span class="menu-text">Research</span></a>
+    <a class="nav-link" href="./roadmap.html"> 
+<span class="menu-text">Roadmap</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./changelog.html"> 
-<span class="menu-text">Changelog</span></a>
+    <a class="nav-link" href="./strength.html"> 
+<span class="menu-text">Strength</span></a>
   </li>  
-</ul>
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="./team.html"> 
-<span class="menu-text">Team</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-play" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Play</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-play">    
+        <li>
+    <a class="dropdown-item" href="./play.html">
+ <span class="dropdown-text">Play a game</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./contact.html"> 
-<span class="menu-text">Contact</span></a>
+        <li>
+    <a class="dropdown-item" href="./analyse.html">
+ <span class="dropdown-text">Analyse a position</span></a>
   </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -149,7 +154,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Raccoon Backgammon</h1>
-<p class="subtitle lead">A modern neural engine you can play in your browser</p>
+<p class="subtitle lead">A modern neural engine for backgammon — free, open, and running in your browser</p>
 </div>
 
 
@@ -167,64 +172,38 @@ ul.task-list li input[type="checkbox"] {
 
 
 <div class="lead">
-<p>Backgammon’s strongest engines were built in the 1990s. Raccoon is a rebuild with the methods that have since transformed chess and Go — a deep residual network trained by large-scale distillation — and it runs entirely in your browser. No account, no server, nothing to install.</p>
+<p>Backgammon’s strongest engines were built in the 1990s. Raccoon is a rebuild with the methods that have since transformed chess and Go — a deep residual network trained by large-scale distillation. It plays stronger backgammon than GNU Backgammon’s own network, it is free and open source, and it runs entirely on your machine. No account, no server, nothing to install.</p>
 </div>
+<p>The board below is the engine itself, not a video of it. Roll, and it plays you.</p>
 <div class="raccoon-app" data-mode="play">
 
 </div>
 <div class="app-fallback">
-<p>The board above needs JavaScript and WebAssembly. Everything else on this site works without them, and the engine also runs <a href="./engine.html">in a terminal</a>.</p>
+<p>The board above needs JavaScript and WebAssembly. Everything else on this site works without them, and the engine also runs <a href="./how.html">in a terminal</a>.</p>
 </div>
-<section id="what-it-does" class="level2">
-<h2 data-anchor-id="what-it-does">What it does</h2>
+<section id="what-you-can-do-today" class="level2">
+<h2 data-anchor-id="what-you-can-do-today">What you can do today</h2>
 <ul>
 <li><strong>Play</strong> a full cubeless money game against the engine — <a href="./play.html">full-size board</a>.</li>
 <li><strong>Analyse</strong> any position: ranked candidate moves, cubeless equity, and the win/gammon/backgammon split — <a href="./analyse.html">open the analyser</a>.</li>
 <li><strong>Bring your own positions</strong> with XGID import and export, the format XG and GNU Backgammon already speak.</li>
+<li><strong>Run the same engine locally</strong>, from a terminal or from your own tool — it is MIT-licensed Python and PyTorch. <a href="./how.html">How it works</a>.</li>
 </ul>
 <p>Everything happens on your machine: the network’s weights are downloaded once and evaluated locally, so nothing you play is ever sent anywhere.</p>
 </section>
-<section id="how-strong-is-it" class="level2">
-<h2 data-anchor-id="how-strong-is-it">How strong is it</h2>
-<p>Scored on the BGSage money benchmark — 14,693 checker decisions with rollout-quality references. PR is mean move-selection error × 500; lower is better.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Engine</th>
-<th>Compute per decision</th>
-<th>PR (14,693 decisions)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>GNU Backgammon, 2-ply full-width search</td>
-<td>~1.3 s</td>
-<td><strong>0.56</strong></td>
-</tr>
-<tr class="even">
-<td><strong>Raccoon, single network evaluation</strong></td>
-<td>~10 ms</td>
-<td><strong>0.95</strong></td>
-</tr>
-<tr class="odd">
-<td>GNU Backgammon, single network evaluation</td>
-<td>~10 ms</td>
-<td><strong>2.14</strong></td>
-</tr>
-</tbody>
-</table>
-<p>At equal cost Raccoon’s checker play is well past GNU Backgammon’s own network, and it has closed most of the distance to GNU Backgammon’s 2-ply search while doing no search at all. In direct play it wins +0.046 ± 0.005 points per game against GNU Backgammon at 0-ply over 6,000 games — measured with <a href="https://research.raccoonbg.com/variance_reduction.html">variance-reduced rollouts</a>, which read the same games seven times more precisely than counting points does.</p>
-<p>The engine in your browser is the measured engine, not a cut-down version of it: the exported network scores PR 0.9500 on the benchmark against 0.9498 for the PyTorch checkpoint it came from.</p>
-<p>The honest caveat: this is <strong>checker play only, cubeless</strong>. The doubling cube — half of competitive backgammon — is the next milestone.</p>
+<section id="why-build-it" class="level2">
+<h2 data-anchor-id="why-build-it">Why build it</h2>
+<p>Backgammon was one of machine learning’s early triumphs. TD-Gammon reached expert play in 1992, GNU Backgammon followed the same recipe as free software, and the commercial engines that beat them are closed and paid. Then the field moved on — residual networks, large-scale distillation, search guided by learned values — and almost none of it was ever brought back to backgammon.</p>
+<p>Raccoon’s goal is to close that gap and give the result away: a modern, measurably stronger backgammon engine that any player, teacher or tool author can use for free. Every step is measured against a named opponent on a metric fixed before the run, and published in full — including the experiments that failed — at <a href="https://research.raccoonbg.com">research.raccoonbg.com</a>.</p>
 </section>
-<section id="where-it-comes-from" class="level2">
-<h2 data-anchor-id="where-it-comes-from">Where it comes from</h2>
-<p>Raccoon is built by <a href="./team.html">Tekst og tal</a>, a one-person company in Denmark. Every experiment behind the engine is published with its hypothesis, primary metric, sample size and result — including the failures — at <a href="https://research.raccoonbg.com">research.raccoonbg.com</a>. The engine itself is <a href="./engine.html">open source</a> under the MIT licence.</p>
+<section id="where-it-stands" class="level2">
+<h2 data-anchor-id="where-it-stands">Where it stands</h2>
+<p>The first milestone is done. On the BGSage money benchmark Raccoon scores PR 0.95 against 2.14 for GNU Backgammon’s own network at equal search depth, and in direct play it wins +0.047 ± 0.003 points per game over 18,000 games. <a href="./strength.html">The evidence, in two tables</a>.</p>
+<p>The honest caveat: this is <strong>checker play only, cubeless</strong>. The doubling cube — half of competitive backgammon — and a search layer on top of the network are the next two milestones. <a href="./roadmap.html">See the roadmap</a>.</p>
+</section>
+<section id="who-builds-it" class="level2">
+<h2 data-anchor-id="who-builds-it">Who builds it</h2>
+<p>Raccoon is built by <strong>Tekst og tal</strong> (CVR <a href="https://datacvr.virk.dk/enhed/virksomhed/34101302">34101302</a>), a one-person research and development company in Denmark, run by <a href="https://www.linkedin.com/in/lassehjorthmadsen/">Lasse Hjorth Madsen</a>. Raccoon Backgammon is that company’s product; the engine, the training pipelines and every experiment write-up are public and MIT-licensed. <a href="./who.html">More about who is behind this</a>.</p>
 
 
 </section>
@@ -642,7 +621,7 @@ ul.task-list li input[type="checkbox"] {
 <p><a href="mailto:hello@raccoonbg.com">hello@raccoonbg.com</a></p>
 </div>
     <div class="nav-footer-right">
-<p><a href="./privacy.html">Privacy</a> · <a href="./terms.html">Terms</a> · <a href="https://research.raccoonbg.com">Research</a></p>
+<p><a href="./privacy.html">Privacy</a> · <a href="./terms.html">Terms</a> · <a href="./changelog.html">Changelog</a> · <a href="https://research.raccoonbg.com">Research</a></p>
 </div>
   </div>
 </footer>

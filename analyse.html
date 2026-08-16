@@ -102,35 +102,40 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./play.html"> 
-<span class="menu-text">Play</span></a>
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">What</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./analyse.html" aria-current="page"> 
-<span class="menu-text">Analyse</span></a>
+    <a class="nav-link" href="./who.html"> 
+<span class="menu-text">Who</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./engine.html"> 
-<span class="menu-text">Engine</span></a>
+    <a class="nav-link" href="./how.html"> 
+<span class="menu-text">How</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://research.raccoonbg.com"> 
-<span class="menu-text">Research</span></a>
+    <a class="nav-link" href="./roadmap.html"> 
+<span class="menu-text">Roadmap</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./changelog.html"> 
-<span class="menu-text">Changelog</span></a>
+    <a class="nav-link" href="./strength.html"> 
+<span class="menu-text">Strength</span></a>
   </li>  
-</ul>
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="./team.html"> 
-<span class="menu-text">Team</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-play" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Play</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-play">    
+        <li>
+    <a class="dropdown-item" href="./play.html">
+ <span class="dropdown-text">Play a game</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./contact.html"> 
-<span class="menu-text">Contact</span></a>
+        <li>
+    <a class="dropdown-item" href="./analyse.html">
+ <span class="dropdown-text">Analyse a position</span></a>
   </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -166,15 +171,18 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<div class="lead">
+<p>Same engine as the <a href="./play.html">playable board</a>, same rough edges — here you move both sides, so you can set up a position and ask what the network makes of it.</p>
+</div>
 <div class="raccoon-app" data-mode="analyse" data-size="full">
 
 </div>
 <div class="app-fallback">
-<p>The analyser needs JavaScript and WebAssembly. The same engine runs <a href="./engine.html">in a terminal</a>.</p>
+<p>The analyser needs JavaScript and WebAssembly. The same engine runs <a href="./how.html">in a terminal</a>.</p>
 </div>
-<p><strong>Bring a position.</strong> Paste an XGID from XG, GNU Backgammon or Backgammon Galaxy and the board will load it; edit the board by hand if you prefer; copy the XGID back out when you are done.</p>
-<p><strong>What the numbers mean.</strong> Every legal play is ranked by cubeless equity in points, from the perspective of the player on roll, together with the probabilities of winning plain, with a gammon, and with a backgammon — read straight from the network’s six-outcome value head. Equity differences are shown against the best play, which is the same quantity error rates are built from.</p>
-<p><strong>Cube decisions are not analysed.</strong> The cube fields of an XGID are read and displayed but not evaluated: this engine is cubeless for now.</p>
+<p><strong>Bring a position.</strong> Paste an XGID from XG, GNU Backgammon or Backgammon Galaxy and the board will load it; edit the board by hand if you prefer; copy the XGID back out when you are done. <strong>Analyse</strong> ranks every legal play for the dice on screen.</p>
+<p><strong>What the numbers mean.</strong> Every legal play is ranked by cubeless equity in points, from the perspective of the player on roll, together with the probabilities of winning plain, with a gammon, and with a backgammon — read straight from the network’s six-outcome value head. Equity differences are shown against the best play, which is the same quantity the <a href="./strength.html">strength measurements</a> are built from.</p>
+<p><strong>Cube decisions are not analysed.</strong> The cube fields of an XGID are read and displayed but not evaluated: this engine is cubeless for now, and a cube model is <a href="./roadmap.html">milestone 3</a>.</p>
 
 
 
@@ -591,7 +599,7 @@ ul.task-list li input[type="checkbox"] {
 <p><a href="mailto:hello@raccoonbg.com">hello@raccoonbg.com</a></p>
 </div>
     <div class="nav-footer-right">
-<p><a href="./privacy.html">Privacy</a> · <a href="./terms.html">Terms</a> · <a href="https://research.raccoonbg.com">Research</a></p>
+<p><a href="./privacy.html">Privacy</a> · <a href="./terms.html">Terms</a> · <a href="./changelog.html">Changelog</a> · <a href="https://research.raccoonbg.com">Research</a></p>
 </div>
   </div>
 </footer>

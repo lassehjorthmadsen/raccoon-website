@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Terms of use – Raccoon Backgammon</title>
+<title>Strength – Raccoon Backgammon</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -76,11 +76,11 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="styles.css">
-<meta property="og:title" content="Terms of use – Raccoon Backgammon">
-<meta property="og:description" content="A free, open neural engine for backgammon — play it and analyse positions in your browser, nothing to install">
+<meta property="og:title" content="Strength – Raccoon Backgammon">
+<meta property="og:description" content="Two independent measurements against GNU Backgammon">
 <meta property="og:site_name" content="Raccoon Backgammon">
-<meta name="twitter:title" content="Terms of use – Raccoon Backgammon">
-<meta name="twitter:description" content="A free, open neural engine for backgammon — play it and analyse positions in your browser, nothing to install">
+<meta name="twitter:title" content="Strength – Raccoon Backgammon">
+<meta name="twitter:description" content="Two independent measurements against GNU Backgammon">
 <meta name="twitter:card" content="summary">
 </head>
 
@@ -118,7 +118,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Roadmap</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./strength.html"> 
+    <a class="nav-link active" href="./strength.html" aria-current="page"> 
 <span class="menu-text">Strength</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -153,7 +153,8 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Terms of use</h1>
+<h1 class="title">Strength</h1>
+<p class="subtitle lead">Two independent measurements against GNU Backgammon</p>
 </div>
 
 
@@ -170,14 +171,98 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><em>Last updated: 13 August 2026</em></p>
-<p>Raccoon Backgammon is provided free of charge by Tekst og tal (CVR 34101302, Denmark).</p>
-<p><strong>The engine is open source.</strong> The source code, training pipelines and network weights are published under the <a href="https://github.com/lassehjorthmadsen/raccoon/blob/main/LICENSE">MIT licence</a>. You may use, modify and redistribute them on those terms, including commercially.</p>
-<p><strong>This website is provided as is.</strong> It runs entirely in your browser and makes no guarantee of availability, accuracy or fitness for a particular purpose. The engine plays <em>cubeless money-game</em> backgammon and does not yet handle the doubling cube; its analysis is a research tool, not authoritative instruction.</p>
-<p><strong>No warranty, no liability.</strong> To the extent permitted by law, Tekst og tal is not liable for any loss arising from use of this site or the engine.</p>
-<p><strong>Contact</strong> — <a href="mailto:hello@raccoonbg.com">hello@raccoonbg.com</a>.</p>
+<div class="lead">
+<p>The claim is narrow and it is the only one we make: on cubeless checker play, Raccoon’s network is stronger than GNU Backgammon’s network at the same search depth — none. Two measurements support it, one on a fixed benchmark of scored decisions, one from 18,000 games of actual play.</p>
+</div>
+<section id="the-bgsage-money-benchmark" class="level2">
+<h2 data-anchor-id="the-bgsage-money-benchmark">1. The BGSage money benchmark</h2>
+<p>A fixed corpus of 500 self-play money games. Every non-trivial decision in it carries a reference cubeless equity computed at adaptive precision — the closest decisions get full rollouts, the rest get deep static evaluations — so an engine can be scored on how much equity it gives away per decision rather than on who won.</p>
+<p>The benchmark data was published by <strong>BGSage</strong> (<a href="https://github.com/markbgsage/bgsage">repository</a>, <a href="https://www.bgsage.ai/botperformance/">bot performance study</a>), and this project is in their debt for making it available. Scoring one engine against another honestly is otherwise the most expensive part of the work.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Engine</th>
+<th>Search</th>
+<th>PR (n = 14,693)</th>
+<th>Blunders</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>GNU Backgammon</td>
+<td>full-width, 2 ply</td>
+<td><strong>0.56</strong></td>
+<td>11</td>
+</tr>
+<tr class="even">
+<td><strong>Raccoon <code>exp018-ep22</code></strong></td>
+<td>none — one network evaluation</td>
+<td><strong>0.95</strong></td>
+<td>19</td>
+</tr>
+<tr class="odd">
+<td>GNU Backgammon</td>
+<td>none — one network evaluation</td>
+<td><strong>2.14</strong></td>
+<td>95</td>
+</tr>
+</tbody>
+</table>
+<p><em>PR is mean move-selection error × 500 — <code>mean(max(0, best_equity − chosen_equity)) × 500</code> — so lower is better and zero is perfect. A blunder is a single decision costing more than 0.08 points. All three engines were scored on the same 14,693 checker decisions, with cubeless references at three precision tiers: 5,695 rollout, 2,842 three-ply-team, 6,156 three-ply. The corpus’s 2,842 cube decisions are excluded, because none of these engines is being scored on the cube. These figures are not comparable with BGSage’s own published PR numbers, which are cubeful and do include cube decisions.</em></p>
+<p><em>One caution on our own number: 0.95 is the score of this particular checkpoint, picked because it was the best. The same training recipe averages PR 0.99 (SD 0.023) across epochs 15–24, and that is the fairer reading of the method’s level. Either number is well clear of 2.14.</em></p>
+</section>
+<section id="head-to-head-b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2076617220656e67696e652e7070675f6e203e7d7d-games" class="level2">
+<h2 data-anchor-id="head-to-head-b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2076617220656e67696e652e7070675f6e203e7d7d-games">2. Head-to-head, 18,000 games</h2>
+<p>A benchmark scores decisions in isolation. This measures what happens when the two engines simply play each other: cubeless money game, seats alternated, both sides picking moves with a single network evaluation.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Measure</th>
+<th>Result</th>
+<th>95% CI</th>
+<th>Games</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Points per game vs GNU Backgammon 0-ply, variance-reduced</strong></td>
+<td><strong>+0.047</strong></td>
+<td>± 0.003</td>
+<td><p>18,000</p></td>
+</tr>
+<tr class="even">
+<td>The same games, plain unadjusted average</td>
+<td><p>+0.048</p></td>
+<td>± 0.020</td>
+<td><p>18,000</p></td>
+</tr>
+</tbody>
+</table>
+<p><em>The two rows are the same games read two ways. Backgammon results are dominated by the dice, so the raw average still spans zero after 18,000 games and settles nothing. The variance-reduced row subtracts the luck in each roll — a control-variate technique standard in GNU Backgammon’s and XG’s rollouts — which is worth about 54× in variance here. Matching that confidence interval by counting points would have taken roughly 970,000 games.</em> <a href="https://research.raccoonbg.com/variance_reduction.html"><em>How the variance reduction works, and why it is unbiased</em></a></p>
+</section>
+<section id="the-engine-you-play-here-is-the-engine-that-was-measured" class="level2">
+<h2 data-anchor-id="the-engine-you-play-here-is-the-engine-that-was-measured">The engine you play here is the engine that was measured</h2>
+<p>The browser runs the same network exported to ONNX, and that exported file was re-scored on the same benchmark at the same sample size: PR 0.9500 for the ONNX file against 0.9498 for the PyTorch checkpoint. Nothing was cut down to fit in a browser tab.</p>
+</section>
+<section id="what-this-does-not-claim" class="level2">
+<h2 data-anchor-id="what-this-does-not-claim">What this does not claim</h2>
+<p><strong>Checker play only, and cubeless.</strong> No doubling cube, no match play, no cube decisions of any kind — a strong cube handler could beat this engine comfortably in a real match while being worse at moving checkers. Both are milestones on the <a href="./roadmap.html">roadmap</a>, and neither has been measured because neither exists yet.</p>
+<p><strong>Against GNU Backgammon, not against everything.</strong> GNU Backgammon is the strongest freely available engine and the natural reference; the commercial engines are closed, and we have not benchmarked against them.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <!-- Boots the engine UI on any page containing a .raccoon-app container.

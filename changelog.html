@@ -102,35 +102,40 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./play.html"> 
-<span class="menu-text">Play</span></a>
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">What</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./analyse.html"> 
-<span class="menu-text">Analyse</span></a>
+    <a class="nav-link" href="./who.html"> 
+<span class="menu-text">Who</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./engine.html"> 
-<span class="menu-text">Engine</span></a>
+    <a class="nav-link" href="./how.html"> 
+<span class="menu-text">How</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://research.raccoonbg.com"> 
-<span class="menu-text">Research</span></a>
+    <a class="nav-link" href="./roadmap.html"> 
+<span class="menu-text">Roadmap</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./changelog.html" aria-current="page"> 
-<span class="menu-text">Changelog</span></a>
+    <a class="nav-link" href="./strength.html"> 
+<span class="menu-text">Strength</span></a>
   </li>  
-</ul>
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="./team.html"> 
-<span class="menu-text">Team</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-play" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Play</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-play">    
+        <li>
+    <a class="dropdown-item" href="./play.html">
+ <span class="dropdown-text">Play a game</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./contact.html"> 
-<span class="menu-text">Contact</span></a>
+        <li>
+    <a class="dropdown-item" href="./analyse.html">
+ <span class="dropdown-text">Analyse a position</span></a>
   </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -166,6 +171,14 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="the-site-says-what-who-how-roadmap-strength-play" class="level2">
+<h2 data-anchor-id="the-site-says-what-who-how-roadmap-strength-play">2026-08 — The site says What, Who, How, Roadmap, Strength, Play</h2>
+<ul>
+<li>The site was restructured around six pages so that a first-time visitor can see what Raccoon is, why it exists and how strong it is without reading the research notes. All strength numbers now live on one <a href="./strength.html">Strength</a> page, and the development plan is written down on <a href="./roadmap.html">Roadmap</a>.</li>
+<li><strong>Corrected number:</strong> the head-to-head result against GNU Backgammon is +0.047 ± 0.003 points per game over 18,000 games — the pooled figure across both seed families. The site previously quoted +0.046 ± 0.005 over 6,000 games, which was one arm of that measurement.</li>
+<li>The “compute per decision” column was dropped from the strength tables. The seconds quoted in it were never measured; the tables now say what search each engine does, which is the comparison that was meant.</li>
+</ul>
+</section>
 <section id="raccoon-plays-in-the-browser" class="level2">
 <h2 data-anchor-id="raccoon-plays-in-the-browser">2026-08 — Raccoon plays in the browser</h2>
 <ul>
@@ -178,7 +191,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="a-doubles-bug-worth-0.033-points-per-game" class="level2">
 <h2 data-anchor-id="a-doubles-bug-worth-0.033-points-per-game">2026-08 — A doubles bug worth 0.033 points per game</h2>
 <ul>
-<li>On a double, the engine was choosing its four half-moves two at a time rather than optimising the turn as a whole. It cost 0.062 points on the one doubles turn in six where the difference mattered. Fixing the search — with no change to the network — took the margin over GNU Backgammon at 0-ply from +0.013 to +0.046 ± 0.005 points per game. <a href="https://research.raccoonbg.com/variance_reduction.html#exp020">How it was found</a>. The browser engine plays the fixed way.</li>
+<li>On a double, the engine was choosing its four half-moves two at a time rather than optimising the turn as a whole. It cost 0.062 points on the one doubles turn in six where the difference mattered. Fixing the search — with no change to the network — took the margin over GNU Backgammon at 0-ply from +0.013 to +0.046 points per game. <a href="https://research.raccoonbg.com/variance_reduction.html#exp020">How it was found</a>. The browser engine plays the fixed way.</li>
 </ul>
 </section>
 <section id="first-head-to-head-win-over-gnu-backgammon" class="level2">
@@ -610,7 +623,7 @@ ul.task-list li input[type="checkbox"] {
 <p><a href="mailto:hello@raccoonbg.com">hello@raccoonbg.com</a></p>
 </div>
     <div class="nav-footer-right">
-<p><a href="./privacy.html">Privacy</a> · <a href="./terms.html">Terms</a> · <a href="https://research.raccoonbg.com">Research</a></p>
+<p><a href="./privacy.html">Privacy</a> · <a href="./terms.html">Terms</a> · <a href="./changelog.html">Changelog</a> · <a href="https://research.raccoonbg.com">Research</a></p>
 </div>
   </div>
 </footer>

@@ -1,10 +1,73 @@
 [
   {
-    "objectID": "terms.html",
-    "href": "terms.html",
-    "title": "Terms of use",
+    "objectID": "who.html",
+    "href": "who.html",
+    "title": "Who",
     "section": "",
-    "text": "Last updated: 13 August 2026\nRaccoon Backgammon is provided free of charge by Tekst og tal (CVR 34101302, Denmark).\nThe engine is open source. The source code, training pipelines and network weights are published under the MIT licence. You may use, modify and redistribute them on those terms, including commercially.\nThis website is provided as is. It runs entirely in your browser and makes no guarantee of availability, accuracy or fitness for a particular purpose. The engine plays cubeless money-game backgammon and does not yet handle the doubling cube; its analysis is a research tool, not authoritative instruction.\nNo warranty, no liability. To the extent permitted by law, Tekst og tal is not liable for any loss arising from use of this site or the engine.\nContact — hello@raccoonbg.com."
+    "text": "Raccoon Backgammon is the product of Tekst og tal, a one-person research and development company registered in Denmark under CVR 34101302. Tekst og tal is the registered company name and predates the engine; Raccoon Backgammon is what it builds. Both names refer to the same business, and the CVR record linked above is its public entry in the Danish company register."
+  },
+  {
+    "objectID": "who.html#verify-independently",
+    "href": "who.html#verify-independently",
+    "title": "Who",
+    "section": "Verify independently",
+    "text": "Verify independently\nEvery claim on this site can be checked somewhere that is not this site:\n\nLinkedIn — linkedin.com/in/lassehjorthmadsen\nGitHub — github.com/lassehjorthmadsen\nThe engine — github.com/lassehjorthmadsen/raccoon — the network, training pipelines and every experiment write-up, MIT-licensed.\nThis website — github.com/lassehjorthmadsen/raccoon-website — including the browser port of the engine and the tests that gate its deploy.\nDanish company register (CVR) — Tekst og tal, CVR 34101302 — the official public record of the company behind this site.\nPersonal site — tekstogtal.dk\nEmail — hello@raccoonbg.com"
+  },
+  {
+    "objectID": "who.html#how-we-work",
+    "href": "who.html#how-we-work",
+    "title": "Who",
+    "section": "How we work",
+    "text": "How we work\nEverything is measured, and everything is published. Each experiment states one hypothesis, fixes one primary metric before the run, and reports every checkpoint against it with sample sizes and confidence intervals. The write-ups include the experiments that failed, the conclusions later retracted, and the measurement bugs found in our own evaluation code. In a domain where effect sizes are small and noise is large, a result without its error bar is not a result.\nThe code is open. The engine, training pipelines and evaluation harnesses are MIT-licensed and public. Game rules come from OpenSpiel; every line of the machine learning and search code is written from scratch.\nTraining runs on Google Cloud — preemptible GPU instances for network training, Cloud Storage for datasets and checkpoints."
+  },
+  {
+    "objectID": "who.html#get-in-touch",
+    "href": "who.html#get-in-touch",
+    "title": "Who",
+    "section": "Get in touch",
+    "text": "Get in touch\nEmail — hello@raccoonbg.com. Bug reports and questions about the engine are best filed as issues.\nWe are especially interested in hearing from:\n\nFront-end and UI developers. The board on this site is deliberately minimal, and a polished interface is not on our roadmap — we would rather expose the engine well and let someone who does interfaces build the interface.\nBackgammon players and analysts with labelled position sets, rollout archives, or match databases we could benchmark against.\nResearchers working on stochastic games, distillation, or search-free evaluation.\nTool authors who would like to embed the engine — it already speaks a UCI-style text protocol built for exactly that. See How."
+  },
+  {
+    "objectID": "who.html#company-details",
+    "href": "who.html#company-details",
+    "title": "Who",
+    "section": "Company details",
+    "text": "Company details\n\n\n\nLegal name\nTekst og tal\n\n\nRegistration\nCVR 34101302 (public record)\n\n\nCountry\nDenmark\n\n\nContact\nhello@raccoonbg.com\n\n\nProduct\nRaccoon Backgammon — play it here\n\n\nStatus\nPre-revenue research and development; the engine is free and open source"
+  },
+  {
+    "objectID": "strength.html",
+    "href": "strength.html",
+    "title": "Strength",
+    "section": "",
+    "text": "The claim is narrow and it is the only one we make: on cubeless checker play, Raccoon’s network is stronger than GNU Backgammon’s network at the same search depth — none. Two measurements support it, one on a fixed benchmark of scored decisions, one from 18,000 games of actual play."
+  },
+  {
+    "objectID": "strength.html#the-bgsage-money-benchmark",
+    "href": "strength.html#the-bgsage-money-benchmark",
+    "title": "Strength",
+    "section": "1. The BGSage money benchmark",
+    "text": "1. The BGSage money benchmark\nA fixed corpus of 500 self-play money games. Every non-trivial decision in it carries a reference cubeless equity computed at adaptive precision — the closest decisions get full rollouts, the rest get deep static evaluations — so an engine can be scored on how much equity it gives away per decision rather than on who won.\nThe benchmark data was published by BGSage (repository, bot performance study), and this project is in their debt for making it available. Scoring one engine against another honestly is otherwise the most expensive part of the work.\n\n\n\n\n\n\n\n\n\nEngine\nSearch\nPR (n = 14,693)\nBlunders\n\n\n\n\nGNU Backgammon\nfull-width, 2 ply\n0.56\n11\n\n\nRaccoon exp018-ep22\nnone — one network evaluation\n0.95\n19\n\n\nGNU Backgammon\nnone — one network evaluation\n2.14\n95\n\n\n\nPR is mean move-selection error × 500 — mean(max(0, best_equity − chosen_equity)) × 500 — so lower is better and zero is perfect. A blunder is a single decision costing more than 0.08 points. All three engines were scored on the same 14,693 checker decisions, with cubeless references at three precision tiers: 5,695 rollout, 2,842 three-ply-team, 6,156 three-ply. The corpus’s 2,842 cube decisions are excluded, because none of these engines is being scored on the cube. These figures are not comparable with BGSage’s own published PR numbers, which are cubeful and do include cube decisions.\nOne caution on our own number: 0.95 is the score of this particular checkpoint, picked because it was the best. The same training recipe averages PR 0.99 (SD 0.023) across epochs 15–24, and that is the fairer reading of the method’s level. Either number is well clear of 2.14."
+  },
+  {
+    "objectID": "strength.html#head-to-head-b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2076617220656e67696e652e7070675f6e203e7d7d-games",
+    "href": "strength.html#head-to-head-b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2076617220656e67696e652e7070675f6e203e7d7d-games",
+    "title": "Strength",
+    "section": "2. Head-to-head, 18,000 games",
+    "text": "2. Head-to-head, 18,000 games\nA benchmark scores decisions in isolation. This measures what happens when the two engines simply play each other: cubeless money game, seats alternated, both sides picking moves with a single network evaluation.\n\n\n\n\n\n\n\n\n\nMeasure\nResult\n95% CI\nGames\n\n\n\n\nPoints per game vs GNU Backgammon 0-ply, variance-reduced\n+0.047\n± 0.003\n18,000\n\n\nThe same games, plain unadjusted average\n+0.048\n± 0.020\n18,000\n\n\n\nThe two rows are the same games read two ways. Backgammon results are dominated by the dice, so the raw average still spans zero after 18,000 games and settles nothing. The variance-reduced row subtracts the luck in each roll — a control-variate technique standard in GNU Backgammon’s and XG’s rollouts — which is worth about 54× in variance here. Matching that confidence interval by counting points would have taken roughly 970,000 games. How the variance reduction works, and why it is unbiased"
+  },
+  {
+    "objectID": "strength.html#the-engine-you-play-here-is-the-engine-that-was-measured",
+    "href": "strength.html#the-engine-you-play-here-is-the-engine-that-was-measured",
+    "title": "Strength",
+    "section": "The engine you play here is the engine that was measured",
+    "text": "The engine you play here is the engine that was measured\nThe browser runs the same network exported to ONNX, and that exported file was re-scored on the same benchmark at the same sample size: PR 0.9500 for the ONNX file against 0.9498 for the PyTorch checkpoint. Nothing was cut down to fit in a browser tab."
+  },
+  {
+    "objectID": "strength.html#what-this-does-not-claim",
+    "href": "strength.html#what-this-does-not-claim",
+    "title": "Strength",
+    "section": "What this does not claim",
+    "text": "What this does not claim\nChecker play only, and cubeless. No doubling cube, no match play, no cube decisions of any kind — a strong cube handler could beat this engine comfortably in a real match while being worse at moving checkers. Both are milestones on the roadmap, and neither has been measured because neither exists yet.\nAgainst GNU Backgammon, not against everything. GNU Backgammon is the strongest freely available engine and the natural reference; the commercial engines are closed, and we have not benchmarked against them."
   },
   {
     "objectID": "privacy.html",
@@ -46,63 +109,63 @@
     "href": "index.html",
     "title": "Raccoon Backgammon",
     "section": "",
-    "text": "Backgammon’s strongest engines were built in the 1990s. Raccoon is a rebuild with the methods that have since transformed chess and Go — a deep residual network trained by large-scale distillation — and it runs entirely in your browser. No account, no server, nothing to install."
+    "text": "Backgammon’s strongest engines were built in the 1990s. Raccoon is a rebuild with the methods that have since transformed chess and Go — a deep residual network trained by large-scale distillation. It plays stronger backgammon than GNU Backgammon’s own network, it is free and open source, and it runs entirely on your machine. No account, no server, nothing to install.\nThe board below is the engine itself, not a video of it. Roll, and it plays you."
   },
   {
-    "objectID": "index.html#what-it-does",
-    "href": "index.html#what-it-does",
+    "objectID": "index.html#what-you-can-do-today",
+    "href": "index.html#what-you-can-do-today",
     "title": "Raccoon Backgammon",
-    "section": "What it does",
-    "text": "What it does\n\nPlay a full cubeless money game against the engine — full-size board.\nAnalyse any position: ranked candidate moves, cubeless equity, and the win/gammon/backgammon split — open the analyser.\nBring your own positions with XGID import and export, the format XG and GNU Backgammon already speak.\n\nEverything happens on your machine: the network’s weights are downloaded once and evaluated locally, so nothing you play is ever sent anywhere."
+    "section": "What you can do today",
+    "text": "What you can do today\n\nPlay a full cubeless money game against the engine — full-size board.\nAnalyse any position: ranked candidate moves, cubeless equity, and the win/gammon/backgammon split — open the analyser.\nBring your own positions with XGID import and export, the format XG and GNU Backgammon already speak.\nRun the same engine locally, from a terminal or from your own tool — it is MIT-licensed Python and PyTorch. How it works.\n\nEverything happens on your machine: the network’s weights are downloaded once and evaluated locally, so nothing you play is ever sent anywhere."
   },
   {
-    "objectID": "index.html#how-strong-is-it",
-    "href": "index.html#how-strong-is-it",
+    "objectID": "index.html#why-build-it",
+    "href": "index.html#why-build-it",
     "title": "Raccoon Backgammon",
-    "section": "How strong is it",
-    "text": "How strong is it\nScored on the BGSage money benchmark — 14,693 checker decisions with rollout-quality references. PR is mean move-selection error × 500; lower is better.\n\n\n\n\n\n\n\n\nEngine\nCompute per decision\nPR (14,693 decisions)\n\n\n\n\nGNU Backgammon, 2-ply full-width search\n~1.3 s\n0.56\n\n\nRaccoon, single network evaluation\n~10 ms\n0.95\n\n\nGNU Backgammon, single network evaluation\n~10 ms\n2.14\n\n\n\nAt equal cost Raccoon’s checker play is well past GNU Backgammon’s own network, and it has closed most of the distance to GNU Backgammon’s 2-ply search while doing no search at all. In direct play it wins +0.046 ± 0.005 points per game against GNU Backgammon at 0-ply over 6,000 games — measured with variance-reduced rollouts, which read the same games seven times more precisely than counting points does.\nThe engine in your browser is the measured engine, not a cut-down version of it: the exported network scores PR 0.9500 on the benchmark against 0.9498 for the PyTorch checkpoint it came from.\nThe honest caveat: this is checker play only, cubeless. The doubling cube — half of competitive backgammon — is the next milestone."
+    "section": "Why build it",
+    "text": "Why build it\nBackgammon was one of machine learning’s early triumphs. TD-Gammon reached expert play in 1992, GNU Backgammon followed the same recipe as free software, and the commercial engines that beat them are closed and paid. Then the field moved on — residual networks, large-scale distillation, search guided by learned values — and almost none of it was ever brought back to backgammon.\nRaccoon’s goal is to close that gap and give the result away: a modern, measurably stronger backgammon engine that any player, teacher or tool author can use for free. Every step is measured against a named opponent on a metric fixed before the run, and published in full — including the experiments that failed — at research.raccoonbg.com."
   },
   {
-    "objectID": "index.html#where-it-comes-from",
-    "href": "index.html#where-it-comes-from",
+    "objectID": "index.html#where-it-stands",
+    "href": "index.html#where-it-stands",
     "title": "Raccoon Backgammon",
-    "section": "Where it comes from",
-    "text": "Where it comes from\nRaccoon is built by Tekst og tal, a one-person company in Denmark. Every experiment behind the engine is published with its hypothesis, primary metric, sample size and result — including the failures — at research.raccoonbg.com. The engine itself is open source under the MIT licence."
+    "section": "Where it stands",
+    "text": "Where it stands\nThe first milestone is done. On the BGSage money benchmark Raccoon scores PR 0.95 against 2.14 for GNU Backgammon’s own network at equal search depth, and in direct play it wins +0.047 ± 0.003 points per game over 18,000 games. The evidence, in two tables.\nThe honest caveat: this is checker play only, cubeless. The doubling cube — half of competitive backgammon — and a search layer on top of the network are the next two milestones. See the roadmap."
   },
   {
-    "objectID": "contact.html",
-    "href": "contact.html",
-    "title": "Contact",
-    "section": "",
-    "text": "Email — hello@raccoonbg.com\nCode and issues — github.com/lassehjorthmadsen/raccoon. Bug reports and questions about the engine are best filed as issues.\nResearch write-ups — research.raccoonbg.com\nWe are especially interested in hearing from:\n\nBackgammon players and analysts with labelled position sets, rollout archives, or match databases we could benchmark against.\nResearchers working on stochastic games, distillation, or search-free evaluation.\nTool authors who would like to embed the engine — the Raccoon Game Protocol is a UCI-style text protocol built for exactly that. See Engine.\n\n\nTekst og tal · CVR 34101302 · Denmark"
-  },
-  {
-    "objectID": "analyse.html",
-    "href": "analyse.html",
-    "title": "Analyse a position",
-    "section": "",
-    "text": "The analyser needs JavaScript and WebAssembly. The same engine runs in a terminal.\n\nBring a position. Paste an XGID from XG, GNU Backgammon or Backgammon Galaxy and the board will load it; edit the board by hand if you prefer; copy the XGID back out when you are done.\nWhat the numbers mean. Every legal play is ranked by cubeless equity in points, from the perspective of the player on roll, together with the probabilities of winning plain, with a gammon, and with a backgammon — read straight from the network’s six-outcome value head. Equity differences are shown against the best play, which is the same quantity error rates are built from.\nCube decisions are not analysed. The cube fields of an XGID are read and displayed but not evaluated: this engine is cubeless for now."
+    "objectID": "index.html#who-builds-it",
+    "href": "index.html#who-builds-it",
+    "title": "Raccoon Backgammon",
+    "section": "Who builds it",
+    "text": "Who builds it\nRaccoon is built by Tekst og tal (CVR 34101302), a one-person research and development company in Denmark, run by Lasse Hjorth Madsen. Raccoon Backgammon is that company’s product; the engine, the training pipelines and every experiment write-up are public and MIT-licensed. More about who is behind this."
   },
   {
     "objectID": "changelog.html",
     "href": "changelog.html",
     "title": "Changelog",
     "section": "",
-    "text": "The exp018-ep22 network runs client-side via ONNX Runtime Web: play a full cubeless money game, or analyse any position, with no server and no account.\nAnalysis panel showing ranked candidate moves with cubeless equity and the win/gammon/backgammon split from the six-outcome value head.\nXGID import and export, so positions move between Raccoon and existing backgammon tools.\nThe exported network was re-scored on the BGSage benchmark to confirm the browser engine matches the measured one (PR 0.9500 vs 0.9498, n = 14,693)."
+    "text": "The site was restructured around six pages so that a first-time visitor can see what Raccoon is, why it exists and how strong it is without reading the research notes. All strength numbers now live on one Strength page, and the development plan is written down on Roadmap.\nCorrected number: the head-to-head result against GNU Backgammon is +0.047 ± 0.003 points per game over 18,000 games — the pooled figure across both seed families. The site previously quoted +0.046 ± 0.005 over 6,000 games, which was one arm of that measurement.\nThe “compute per decision” column was dropped from the strength tables. The seconds quoted in it were never measured; the tables now say what search each engine does, which is the comparison that was meant."
+  },
+  {
+    "objectID": "changelog.html#the-site-says-what-who-how-roadmap-strength-play",
+    "href": "changelog.html#the-site-says-what-who-how-roadmap-strength-play",
+    "title": "Changelog",
+    "section": "",
+    "text": "The site was restructured around six pages so that a first-time visitor can see what Raccoon is, why it exists and how strong it is without reading the research notes. All strength numbers now live on one Strength page, and the development plan is written down on Roadmap.\nCorrected number: the head-to-head result against GNU Backgammon is +0.047 ± 0.003 points per game over 18,000 games — the pooled figure across both seed families. The site previously quoted +0.046 ± 0.005 over 6,000 games, which was one arm of that measurement.\nThe “compute per decision” column was dropped from the strength tables. The seconds quoted in it were never measured; the tables now say what search each engine does, which is the comparison that was meant."
   },
   {
     "objectID": "changelog.html#raccoon-plays-in-the-browser",
     "href": "changelog.html#raccoon-plays-in-the-browser",
     "title": "Changelog",
-    "section": "",
-    "text": "The exp018-ep22 network runs client-side via ONNX Runtime Web: play a full cubeless money game, or analyse any position, with no server and no account.\nAnalysis panel showing ranked candidate moves with cubeless equity and the win/gammon/backgammon split from the six-outcome value head.\nXGID import and export, so positions move between Raccoon and existing backgammon tools.\nThe exported network was re-scored on the BGSage benchmark to confirm the browser engine matches the measured one (PR 0.9500 vs 0.9498, n = 14,693)."
+    "section": "2026-08 — Raccoon plays in the browser",
+    "text": "2026-08 — Raccoon plays in the browser\n\nThe exp018-ep22 network runs client-side via ONNX Runtime Web: play a full cubeless money game, or analyse any position, with no server and no account.\nAnalysis panel showing ranked candidate moves with cubeless equity and the win/gammon/backgammon split from the six-outcome value head.\nXGID import and export, so positions move between Raccoon and existing backgammon tools.\nThe exported network was re-scored on the BGSage benchmark to confirm the browser engine matches the measured one (PR 0.9500 vs 0.9498, n = 14,693)."
   },
   {
     "objectID": "changelog.html#a-doubles-bug-worth-0.033-points-per-game",
     "href": "changelog.html#a-doubles-bug-worth-0.033-points-per-game",
     "title": "Changelog",
     "section": "2026-08 — A doubles bug worth 0.033 points per game",
-    "text": "2026-08 — A doubles bug worth 0.033 points per game\n\nOn a double, the engine was choosing its four half-moves two at a time rather than optimising the turn as a whole. It cost 0.062 points on the one doubles turn in six where the difference mattered. Fixing the search — with no change to the network — took the margin over GNU Backgammon at 0-ply from +0.013 to +0.046 ± 0.005 points per game. How it was found. The browser engine plays the fixed way."
+    "text": "2026-08 — A doubles bug worth 0.033 points per game\n\nOn a double, the engine was choosing its four half-moves two at a time rather than optimising the turn as a whole. It cost 0.062 points on the one doubles turn in six where the difference mattered. Fixing the search — with no change to the network — took the margin over GNU Backgammon at 0-ply from +0.013 to +0.046 points per game. How it was found. The browser engine plays the fixed way."
   },
   {
     "objectID": "changelog.html#first-head-to-head-win-over-gnu-backgammon",
@@ -119,66 +182,80 @@
     "text": "2026-08 — 40M-position distillation\n\nScaling 2-ply distillation from 8M to 40M positions cut move-selection error from PR 2.16 to 0.93 and brought value accuracy to teacher level, with no trade-off across game plans. Write-up.\n\nEvery experiment behind these releases is published in full, including the ones that failed, at research.raccoonbg.com."
   },
   {
-    "objectID": "engine.html",
-    "href": "engine.html",
-    "title": "The engine",
+    "objectID": "analyse.html",
+    "href": "analyse.html",
+    "title": "Analyse a position",
     "section": "",
-    "text": "The engine that plays you in the browser is the same one you can download and run yourself. It is MIT-licensed and written in Python and PyTorch, with game rules from OpenSpiel."
+    "text": "Same engine as the playable board, same rough edges — here you move both sides, so you can set up a position and ask what the network makes of it.\n\n\n\n\n\nThe analyser needs JavaScript and WebAssembly. The same engine runs in a terminal.\n\nBring a position. Paste an XGID from XG, GNU Backgammon or Backgammon Galaxy and the board will load it; edit the board by hand if you prefer; copy the XGID back out when you are done. Analyse ranks every legal play for the dice on screen.\nWhat the numbers mean. Every legal play is ranked by cubeless equity in points, from the perspective of the player on roll, together with the probabilities of winning plain, with a gammon, and with a backgammon — read straight from the network’s six-outcome value head. Equity differences are shown against the best play, which is the same quantity the strength measurements are built from.\nCube decisions are not analysed. The cube fields of an XGID are read and displayed but not evaluated: this engine is cubeless for now, and a cube model is milestone 3."
   },
   {
-    "objectID": "engine.html#install",
-    "href": "engine.html#install",
-    "title": "The engine",
-    "section": "Install",
-    "text": "Install\ngit clone https://github.com/lassehjorthmadsen/raccoon.git\ncd raccoon\nmake setup          # editable install with dev dependencies\nmake test           # run the test suite\nmake play           # play against Raccoon in the terminal"
+    "objectID": "how.html",
+    "href": "how.html",
+    "title": "How",
+    "section": "",
+    "text": "Raccoon is a single neural network and no search. When it is your opponent’s turn it generates every legal play for the dice, encodes all of them at once, and evaluates them in one batched forward pass; the play with the best value wins. The network’s value head predicts six mutually exclusive outcomes — win, gammon and backgammon, each way — from which cubeless equity follows directly.\nThat is the whole move-selection algorithm. There is no tree search, no rollout and no policy head at play time, which is why it answers in milliseconds in a browser tab and still outplays GNU Backgammon’s own network."
   },
   {
-    "objectID": "engine.html#what-the-network-is",
-    "href": "engine.html#what-the-network-is",
-    "title": "The engine",
+    "objectID": "how.html#what-the-network-is",
+    "href": "how.html#what-the-network-is",
+    "title": "How",
     "section": "What the network is",
-    "text": "What the network is\n\n\n\n\n\n\n\nArchitecture\n10-block, 256-channel residual network — 11.9M parameters\n\n\nInput\nA (26, 2, 12) tensor: checker planes, bar/borne-off/dice broadcasts, and handcrafted pip, blot, anchor and contact features\n\n\nValue head\nSix mutually exclusive outcomes — win, gammon, backgammon, each way — from which cubeless equity follows\n\n\nMove selection\n0-ply value lookahead: every legal play is evaluated in one batched forward pass, no search\n\n\nTraining\nSupervised distillation of 40M positions labelled by GNU Backgammon’s 2-ply search"
+    "text": "What the network is\n\n\n\n\n\n\n\nArchitecture\n10-block, 256-channel residual network — 11.9M parameters\n\n\nInput\nA (26, 2, 12) tensor: checker planes, bar/borne-off/dice broadcasts, and handcrafted pip, blot, anchor and contact features\n\n\nValue head\nSix mutually exclusive outcomes — win, gammon, backgammon, each way — from which cubeless equity follows\n\n\nMove selection\n0-ply value lookahead: every legal play is evaluated in one batched forward pass, no search\n\n\nTraining\nSupervised distillation of 40M positions labelled by GNU Backgammon’s 2-ply search\n\n\nIn the browser\nThe same weights exported to ONNX and run client-side by ONNX Runtime Web\n\n\n\nThe browser really does run the measured network: the exported file scores PR 0.9500 on the benchmark against 0.9498 for the PyTorch checkpoint it came from. The numbers in full."
   },
   {
-    "objectID": "engine.html#strength",
-    "href": "engine.html#strength",
-    "title": "The engine",
-    "section": "Strength",
-    "text": "Strength\nScored on the BGSage money benchmark — 14,693 checker decisions with rollout-quality cubeless-equity references. PR is mean move-selection error × 500; lower is better.\n\n\n\n\n\n\n\n\nEngine\nCompute per decision\nPR\n\n\n\n\nGNU Backgammon, 2-ply full-width search\n~1.3 s\n0.56\n\n\nRaccoon exp018-ep22, single evaluation\n~10 ms\n0.95\n\n\nGNU Backgammon, single evaluation (0-ply)\n~10 ms\n2.14\n\n\n\nIn head-to-head play against GNU Backgammon at 0-ply, Raccoon wins +0.046 ± 0.005 points per game over 6,000 cubeless money games scored with variance-reduced rollouts.\nTwo thirds of that margin came from fixing the search, not the network: on a double the engine used to pick its four half-moves two at a time instead of optimising the whole turn, which cost 0.033 points per game. The browser engine optimises doubles jointly, like the measured one.\nThe browser runs this network exported to ONNX. That exported file was scored on the same benchmark, at the same sample size, and lands on the same number (PR 0.9500 for the ONNX file versus 0.9498 for the PyTorch checkpoint, n = 14,693) — so the engine you play here is the engine that was measured, not a reduced version of it.\nWhat it does not do yet: the doubling cube. Play here and in the CLI is cubeless money game. Cube handling is the next milestone."
+    "objectID": "how.html#run-it-yourself",
+    "href": "how.html#run-it-yourself",
+    "title": "How",
+    "section": "Run it yourself",
+    "text": "Run it yourself\nThe engine that plays you here is the one you can download. It is MIT-licensed Python and PyTorch, with game rules from OpenSpiel.\ngit clone https://github.com/lassehjorthmadsen/raccoon.git\ncd raccoon\nmake setup          # editable install with dev dependencies\nmake test           # run the test suite\nmake play           # play against Raccoon in the terminal"
   },
   {
-    "objectID": "engine.html#embedding-it",
-    "href": "engine.html#embedding-it",
-    "title": "The engine",
+    "objectID": "how.html#embedding-it",
+    "href": "how.html#embedding-it",
+    "title": "How",
     "section": "Embedding it",
-    "text": "Embedding it\nThe engine speaks the Raccoon Game Protocol, a UCI-style line protocol over stdin/stdout intended for analysis GUIs. See raccoon/protocol/rgp.py and the architecture notes. If you are building a tool and want to embed Raccoon, get in touch."
+    "text": "Embedding it\nThe engine speaks the Raccoon Game Protocol, a UCI-style line protocol over stdin/stdout intended for analysis GUIs — see raccoon/protocol/rgp.py. Exposing the same engine over HTTP, so a front-end developer never has to run Python at all, is milestone 5 on the roadmap. If you are building a tool and want to embed Raccoon before then, get in touch."
+  },
+  {
+    "objectID": "how.html#where-the-work-is-published",
+    "href": "how.html#where-the-work-is-published",
+    "title": "How",
+    "section": "Where the work is published",
+    "text": "Where the work is published\nEvery experiment behind the engine is written up at research.raccoonbg.com: one hypothesis, one primary metric fixed before the run, every checkpoint scored against it with sample sizes and confidence intervals — including the runs that failed and the measurement bugs found in our own evaluation code. Start with the distillation results, which is how the current network was trained, or variance reduction, which is how it was measured against GNU Backgammon.\nIt is a working lab notebook rather than documentation, and it reads like one. The short version is on Strength."
   },
   {
     "objectID": "play.html",
     "href": "play.html",
     "title": "Play Raccoon",
     "section": "",
-    "text": "The board needs JavaScript and WebAssembly. The same engine runs in a terminal if you would rather not use a browser.\n\nHow to play. Roll, then click a checker and its destination. The engine replies immediately and shows what it thought of your move. Everything runs on your machine — the network is downloaded once and evaluated locally.\nRules in force. Cubeless money game: gammons and backgammons count double and triple, and there is no doubling cube yet. The engine picks its move by evaluating every legal play with one forward pass of the network — the same 0-ply value lookahead the published strength numbers measure."
+    "text": "The interface is basic and rough around the edges, and a polished UI is not on the roadmap at the moment — the work goes into the engine. If you build backgammon front-ends, we would like to hear how the engine could best be exposed for you to consume; get in touch, and see milestone 5 for where that is heading."
   },
   {
-    "objectID": "team.html",
-    "href": "team.html",
-    "title": "Team",
+    "objectID": "play.html#how-to-play",
+    "href": "play.html#how-to-play",
+    "title": "Play Raccoon",
+    "section": "How to play",
+    "text": "How to play\n\nRoll starts the game and every turn after it. On the opening roll both sides throw one die and the higher one moves first.\nClick a checker, then the point you want it on. Legal destinations light up as soon as a checker is selected; clicking the same checker again puts it back down. The bar and the bear-off tray are click targets like any point.\nThe turn plays itself out. There is no confirm button — when the last half-move of the roll is entered, the play is committed and Raccoon replies.\nUndo takes back everything you have entered since the dice were rolled.\nHint ranks the legal plays for the current roll, so you can see what the engine would do before committing to your own move. After you move, the panel shows what it thought of the play you chose.\nNew game starts over."
+  },
+  {
+    "objectID": "play.html#rules-in-force",
+    "href": "play.html#rules-in-force",
+    "title": "Play Raccoon",
+    "section": "Rules in force",
+    "text": "Rules in force\nCubeless money game: gammons count double, backgammons triple, and there is no doubling cube — the engine does not handle one yet. The engine picks its move by evaluating every legal play with a single forward pass of the network, which is exactly the 0-ply value lookahead the published strength numbers measure. You are playing the measured engine, at full strength, with no handicap and no adjustable level.\nEverything runs on your machine. The network is downloaded once — about 47 MB, the first time the engine is asked to think — and evaluated locally from then on; no position you play leaves your browser.\nTo load a specific position instead of playing one out, use the analyser."
+  },
+  {
+    "objectID": "roadmap.html",
+    "href": "roadmap.html",
+    "title": "Roadmap",
     "section": "",
-    "text": "Raccoon is built by Tekst og tal, a one-person research and development company registered in Denmark (CVR 34101302)."
+    "text": "Nothing here is called done until it has beaten a named opponent on a metric fixed before the run, at a sample size that makes the result mean something. One milestone has cleared that bar. The other four have not.\n\n\n1. A network stronger than GNU Backgammon at 0-ply — Done\nA residual network, trained by distilling 40M positions labelled with GNU Backgammon’s 2-ply search, that beats GNU Backgammon’s own network at equal search depth on cubeless evaluations.\nMeasured two independent ways: PR 0.95 against 2.14 on the BGSage money benchmark, and +0.047 ± 0.003 points per game across 18,000 head-to-head games. See the evidence.\n\n\n2. Search on top of the network, past GNU Backgammon at 2-ply — Next\nThe current engine does no search at all. Adding one — the hard part in backgammon being the chance nodes between every pair of decisions — should be worth more than any further network training.\nThe bar: BGSage benchmark PR below 0.56, GNU Backgammon’s 2-ply score, on the same 14,693 decisions.\n\n\n3. A cube model better than the Janowski formula — Planned\nThe doubling cube is half of competitive backgammon and the engine does not handle it at all today. Cubeful equity is currently approximated everywhere by the Janowski formula with a fitted cube-life index; a model trained to predict it directly should do better.\nThe bar: lower cube error than the Janowski implementations in current engines, on money-game double/take/pass decisions with rollout references.\n\n\n4. Match play — Planned\nEverything above is money game. Match play changes the objective: equity is measured in match-winning chances, which makes both checker play and cube decisions score-dependent.\nThe bar: match-equity-aware evaluation and cube handling, benchmarked on recorded match decisions rather than money-game ones.\n\n\n5. The engine behind a REST API — Planned\nThe board on this site is deliberately basic, and a polished interface is not something we plan to build. The better answer is to expose the engine cleanly and let people who build interfaces build them: positions in, ranked plays and equities out, over HTTP, with no Python to install.\nThe bar: a documented, stable, public endpoint that a front-end developer can build a real product against. If that is you, tell us what you need from it — this milestone is much easier to design with a first consumer in the room.\n\nFor what has already shipped and when, see the changelog. For the experiments behind each step, including the ones that did not work, see research.raccoonbg.com."
   },
   {
-    "objectID": "team.html#how-we-work",
-    "href": "team.html#how-we-work",
-    "title": "Team",
-    "section": "How we work",
-    "text": "How we work\nEverything is measured, and everything is published. Each experiment states one hypothesis, fixes one primary metric before the run, and reports every checkpoint against it with sample sizes and confidence intervals. The write-ups include the experiments that failed, the conclusions later retracted, and the measurement bugs found in our own evaluation code. In a domain where effect sizes are small and noise is large, a result without its error bar is not a result.\nThe code is open. The engine, training pipelines and evaluation harnesses are MIT-licensed and public. Game rules come from OpenSpiel; every line of the machine learning and search code is written from scratch.\nTraining runs on Google Cloud — preemptible GPU instances for network training, Cloud Storage for datasets and checkpoints."
-  },
-  {
-    "objectID": "team.html#company-details",
-    "href": "team.html#company-details",
-    "title": "Team",
-    "section": "Company details",
-    "text": "Company details\n\n\n\nLegal name\nTekst og tal\n\n\nRegistration\nCVR 34101302 (public record)\n\n\nCountry\nDenmark\n\n\nContact\nhello@raccoonbg.com\n\n\nProduct\nRaccoon Backgammon — play it here\n\n\nStatus\nPre-revenue research and development; the engine is free and open source"
+    "objectID": "terms.html",
+    "href": "terms.html",
+    "title": "Terms of use",
+    "section": "",
+    "text": "Last updated: 13 August 2026\nRaccoon Backgammon is provided free of charge by Tekst og tal (CVR 34101302, Denmark).\nThe engine is open source. The source code, training pipelines and network weights are published under the MIT licence. You may use, modify and redistribute them on those terms, including commercially.\nThis website is provided as is. It runs entirely in your browser and makes no guarantee of availability, accuracy or fitness for a particular purpose. The engine plays cubeless money-game backgammon and does not yet handle the doubling cube; its analysis is a research tool, not authoritative instruction.\nNo warranty, no liability. To the extent permitted by law, Tekst og tal is not liable for any loss arising from use of this site or the engine.\nContact — hello@raccoonbg.com."
   }
 ]

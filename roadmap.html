@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Terms of use – Raccoon Backgammon</title>
+<title>Roadmap – Raccoon Backgammon</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -76,11 +76,11 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="styles.css">
-<meta property="og:title" content="Terms of use – Raccoon Backgammon">
-<meta property="og:description" content="A free, open neural engine for backgammon — play it and analyse positions in your browser, nothing to install">
+<meta property="og:title" content="Roadmap – Raccoon Backgammon">
+<meta property="og:description" content="Five milestones, each with the opponent it has to beat">
 <meta property="og:site_name" content="Raccoon Backgammon">
-<meta name="twitter:title" content="Terms of use – Raccoon Backgammon">
-<meta name="twitter:description" content="A free, open neural engine for backgammon — play it and analyse positions in your browser, nothing to install">
+<meta name="twitter:title" content="Roadmap – Raccoon Backgammon">
+<meta name="twitter:description" content="Five milestones, each with the opponent it has to beat">
 <meta name="twitter:card" content="summary">
 </head>
 
@@ -114,7 +114,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">How</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./roadmap.html"> 
+    <a class="nav-link active" href="./roadmap.html" aria-current="page"> 
 <span class="menu-text">Roadmap</span></a>
   </li>  
   <li class="nav-item">
@@ -153,7 +153,8 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Terms of use</h1>
+<h1 class="title">Roadmap</h1>
+<p class="subtitle lead">Five milestones, each with the opponent it has to beat</p>
 </div>
 
 
@@ -170,14 +171,38 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><em>Last updated: 13 August 2026</em></p>
-<p>Raccoon Backgammon is provided free of charge by Tekst og tal (CVR 34101302, Denmark).</p>
-<p><strong>The engine is open source.</strong> The source code, training pipelines and network weights are published under the <a href="https://github.com/lassehjorthmadsen/raccoon/blob/main/LICENSE">MIT licence</a>. You may use, modify and redistribute them on those terms, including commercially.</p>
-<p><strong>This website is provided as is.</strong> It runs entirely in your browser and makes no guarantee of availability, accuracy or fitness for a particular purpose. The engine plays <em>cubeless money-game</em> backgammon and does not yet handle the doubling cube; its analysis is a research tool, not authoritative instruction.</p>
-<p><strong>No warranty, no liability.</strong> To the extent permitted by law, Tekst og tal is not liable for any loss arising from use of this site or the engine.</p>
-<p><strong>Contact</strong> — <a href="mailto:hello@raccoonbg.com">hello@raccoonbg.com</a>.</p>
+<div class="lead">
+<p>Nothing here is called done until it has beaten a named opponent on a metric fixed before the run, at a sample size that makes the result mean something. One milestone has cleared that bar. The other four have not.</p>
+</div>
+<section id="a-network-stronger-than-gnu-backgammon-at-0-ply-done" class="level3">
+<h3 data-anchor-id="a-network-stronger-than-gnu-backgammon-at-0-ply-done">1. A network stronger than GNU Backgammon at 0-ply — <strong>Done</strong></h3>
+<p>A residual network, trained by distilling 40M positions labelled with GNU Backgammon’s 2-ply search, that beats GNU Backgammon’s own network at equal search depth on cubeless evaluations.</p>
+<p><em>Measured two independent ways:</em> PR 0.95 against 2.14 on the BGSage money benchmark, and +0.047 ± 0.003 points per game across 18,000 head-to-head games. <strong><a href="./strength.html">See the evidence</a>.</strong></p>
+</section>
+<section id="search-on-top-of-the-network-past-gnu-backgammon-at-2-ply-next" class="level3">
+<h3 data-anchor-id="search-on-top-of-the-network-past-gnu-backgammon-at-2-ply-next">2. Search on top of the network, past GNU Backgammon at 2-ply — <strong>Next</strong></h3>
+<p>The current engine does no search at all. Adding one — the hard part in backgammon being the chance nodes between every pair of decisions — should be worth more than any further network training.</p>
+<p><em>The bar:</em> BGSage benchmark PR below 0.56, GNU Backgammon’s 2-ply score, on the same 14,693 decisions.</p>
+</section>
+<section id="a-cube-model-better-than-the-janowski-formula-planned" class="level3">
+<h3 data-anchor-id="a-cube-model-better-than-the-janowski-formula-planned">3. A cube model better than the Janowski formula — <strong>Planned</strong></h3>
+<p>The doubling cube is half of competitive backgammon and the engine does not handle it at all today. Cubeful equity is currently approximated everywhere by the Janowski formula with a fitted cube-life index; a model trained to predict it directly should do better.</p>
+<p><em>The bar:</em> lower cube error than the Janowski implementations in current engines, on money-game double/take/pass decisions with rollout references.</p>
+</section>
+<section id="match-play-planned" class="level3">
+<h3 data-anchor-id="match-play-planned">4. Match play — <strong>Planned</strong></h3>
+<p>Everything above is money game. Match play changes the objective: equity is measured in match-winning chances, which makes both checker play and cube decisions score-dependent.</p>
+<p><em>The bar:</em> match-equity-aware evaluation and cube handling, benchmarked on recorded match decisions rather than money-game ones.</p>
+</section>
+<section id="the-engine-behind-a-rest-api-planned" class="level3">
+<h3 data-anchor-id="the-engine-behind-a-rest-api-planned">5. The engine behind a REST API — <strong>Planned</strong></h3>
+<p>The board on this site is deliberately basic, and a polished interface is not something we plan to build. The better answer is to expose the engine cleanly and let people who build interfaces build them: positions in, ranked plays and equities out, over HTTP, with no Python to install.</p>
+<p><em>The bar:</em> a documented, stable, public endpoint that a front-end developer can build a real product against. If that is you, <a href="./who.html">tell us what you need from it</a> — this milestone is much easier to design with a first consumer in the room.</p>
+<hr>
+<p>For what has already shipped and when, see the <a href="./changelog.html">changelog</a>. For the experiments behind each step, including the ones that did not work, see <a href="https://research.raccoonbg.com">research.raccoonbg.com</a>.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <!-- Boots the engine UI on any page containing a .raccoon-app container.

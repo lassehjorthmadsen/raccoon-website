@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Terms of use – Raccoon Backgammon</title>
+<title>How – Raccoon Backgammon</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -25,6 +25,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -76,11 +111,11 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="styles.css">
-<meta property="og:title" content="Terms of use – Raccoon Backgammon">
-<meta property="og:description" content="A free, open neural engine for backgammon — play it and analyse positions in your browser, nothing to install">
+<meta property="og:title" content="How – Raccoon Backgammon">
+<meta property="og:description" content="The network, in brief — and where the full write-ups live">
 <meta property="og:site_name" content="Raccoon Backgammon">
-<meta name="twitter:title" content="Terms of use – Raccoon Backgammon">
-<meta name="twitter:description" content="A free, open neural engine for backgammon — play it and analyse positions in your browser, nothing to install">
+<meta name="twitter:title" content="How – Raccoon Backgammon">
+<meta name="twitter:description" content="The network, in brief — and where the full write-ups live">
 <meta name="twitter:card" content="summary">
 </head>
 
@@ -110,7 +145,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Who</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./how.html"> 
+    <a class="nav-link active" href="./how.html" aria-current="page"> 
 <span class="menu-text">How</span></a>
   </li>  
   <li class="nav-item">
@@ -153,7 +188,8 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Terms of use</h1>
+<h1 class="title">How</h1>
+<p class="subtitle lead">The network, in brief — and where the full write-ups live</p>
 </div>
 
 
@@ -170,14 +206,64 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><em>Last updated: 13 August 2026</em></p>
-<p>Raccoon Backgammon is provided free of charge by Tekst og tal (CVR 34101302, Denmark).</p>
-<p><strong>The engine is open source.</strong> The source code, training pipelines and network weights are published under the <a href="https://github.com/lassehjorthmadsen/raccoon/blob/main/LICENSE">MIT licence</a>. You may use, modify and redistribute them on those terms, including commercially.</p>
-<p><strong>This website is provided as is.</strong> It runs entirely in your browser and makes no guarantee of availability, accuracy or fitness for a particular purpose. The engine plays <em>cubeless money-game</em> backgammon and does not yet handle the doubling cube; its analysis is a research tool, not authoritative instruction.</p>
-<p><strong>No warranty, no liability.</strong> To the extent permitted by law, Tekst og tal is not liable for any loss arising from use of this site or the engine.</p>
-<p><strong>Contact</strong> — <a href="mailto:hello@raccoonbg.com">hello@raccoonbg.com</a>.</p>
+<p>Raccoon is a single neural network and no search. When it is your opponent’s turn it generates every legal play for the dice, encodes all of them at once, and evaluates them in one batched forward pass; the play with the best value wins. The network’s value head predicts six mutually exclusive outcomes — win, gammon and backgammon, each way — from which cubeless equity follows directly.</p>
+<p>That is the whole move-selection algorithm. There is no tree search, no rollout and no policy head at play time, which is why it answers in milliseconds in a browser tab and still <a href="./strength.html">outplays GNU Backgammon’s own network</a>.</p>
+<section id="what-the-network-is" class="level2">
+<h2 data-anchor-id="what-the-network-is">What the network is</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>Architecture</td>
+<td>10-block, 256-channel residual network — 11.9M parameters</td>
+</tr>
+<tr class="even">
+<td>Input</td>
+<td>A (26, 2, 12) tensor: checker planes, bar/borne-off/dice broadcasts, and handcrafted pip, blot, anchor and contact features</td>
+</tr>
+<tr class="odd">
+<td>Value head</td>
+<td>Six mutually exclusive outcomes — win, gammon, backgammon, each way — from which cubeless equity follows</td>
+</tr>
+<tr class="even">
+<td>Move selection</td>
+<td>0-ply value lookahead: every legal play is evaluated in one batched forward pass, no search</td>
+</tr>
+<tr class="odd">
+<td>Training</td>
+<td>Supervised distillation of 40M positions labelled by GNU Backgammon’s 2-ply search</td>
+</tr>
+<tr class="even">
+<td>In the browser</td>
+<td>The same weights exported to ONNX and run client-side by ONNX Runtime Web</td>
+</tr>
+</tbody>
+</table>
+<p>The browser really does run the measured network: the exported file scores PR 0.9500 on the benchmark against 0.9498 for the PyTorch checkpoint it came from. <a href="./strength.html">The numbers in full</a>.</p>
+</section>
+<section id="run-it-yourself" class="level2">
+<h2 data-anchor-id="run-it-yourself">Run it yourself</h2>
+<p>The engine that plays you here is the one you can download. It is MIT-licensed Python and PyTorch, with game rules from <a href="https://openspiel.readthedocs.io/">OpenSpiel</a>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/lassehjorthmadsen/raccoon.git</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> raccoon</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> setup          <span class="co"># editable install with dev dependencies</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> test           <span class="co"># run the test suite</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> play           <span class="co"># play against Raccoon in the terminal</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="embedding-it" class="level2">
+<h2 data-anchor-id="embedding-it">Embedding it</h2>
+<p>The engine speaks the Raccoon Game Protocol, a UCI-style line protocol over stdin/stdout intended for analysis GUIs — see <a href="https://github.com/lassehjorthmadsen/raccoon/blob/main/raccoon/protocol/rgp.py"><code>raccoon/protocol/rgp.py</code></a>. Exposing the same engine over HTTP, so a front-end developer never has to run Python at all, is <a href="./roadmap.html">milestone 5 on the roadmap</a>. If you are building a tool and want to embed Raccoon before then, <a href="./who.html">get in touch</a>.</p>
+</section>
+<section id="where-the-work-is-published" class="level2">
+<h2 data-anchor-id="where-the-work-is-published">Where the work is published</h2>
+<p>Every experiment behind the engine is written up at <a href="https://research.raccoonbg.com">research.raccoonbg.com</a>: one hypothesis, one primary metric fixed before the run, every checkpoint scored against it with sample sizes and confidence intervals — including the runs that failed and the measurement bugs found in our own evaluation code. Start with <a href="https://research.raccoonbg.com/pretraining_analysis.html">the distillation results</a>, which is how the current network was trained, or <a href="https://research.raccoonbg.com/variance_reduction.html">variance reduction</a>, which is how it was measured against GNU Backgammon.</p>
+<p>It is a working lab notebook rather than documentation, and it reads like one. The short version is on <a href="./strength.html">Strength</a>.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <!-- Boots the engine UI on any page containing a .raccoon-app container.

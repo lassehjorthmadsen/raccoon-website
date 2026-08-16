@@ -102,35 +102,40 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./play.html" aria-current="page"> 
-<span class="menu-text">Play</span></a>
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">What</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./analyse.html"> 
-<span class="menu-text">Analyse</span></a>
+    <a class="nav-link" href="./who.html"> 
+<span class="menu-text">Who</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./engine.html"> 
-<span class="menu-text">Engine</span></a>
+    <a class="nav-link" href="./how.html"> 
+<span class="menu-text">How</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://research.raccoonbg.com"> 
-<span class="menu-text">Research</span></a>
+    <a class="nav-link" href="./roadmap.html"> 
+<span class="menu-text">Roadmap</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./changelog.html"> 
-<span class="menu-text">Changelog</span></a>
+    <a class="nav-link" href="./strength.html"> 
+<span class="menu-text">Strength</span></a>
   </li>  
-</ul>
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="./team.html"> 
-<span class="menu-text">Team</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-play" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Play</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-play">    
+        <li>
+    <a class="dropdown-item" href="./play.html">
+ <span class="dropdown-text">Play a game</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./contact.html"> 
-<span class="menu-text">Contact</span></a>
+        <li>
+    <a class="dropdown-item" href="./analyse.html">
+ <span class="dropdown-text">Analyse a position</span></a>
   </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -166,16 +171,34 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<div class="lead">
+<p>The interface is basic and rough around the edges, and a polished UI is not on the roadmap at the moment — the work goes into the engine. If you build backgammon front-ends, we would like to hear how the engine could best be exposed for you to consume; <a href="./who.html">get in touch</a>, and see <a href="./roadmap.html">milestone 5</a> for where that is heading.</p>
+</div>
 <div class="raccoon-app" data-mode="play" data-size="full">
 
 </div>
 <div class="app-fallback">
-<p>The board needs JavaScript and WebAssembly. The same engine runs <a href="./engine.html">in a terminal</a> if you would rather not use a browser.</p>
+<p>The board needs JavaScript and WebAssembly. The same engine runs <a href="./how.html">in a terminal</a> if you would rather not use a browser.</p>
 </div>
-<p><strong>How to play.</strong> Roll, then click a checker and its destination. The engine replies immediately and shows what it thought of your move. Everything runs on your machine — the network is downloaded once and evaluated locally.</p>
-<p><strong>Rules in force.</strong> Cubeless money game: gammons and backgammons count double and triple, and there is no doubling cube yet. The engine picks its move by evaluating every legal play with one forward pass of the network — the same 0-ply value lookahead the <a href="./engine.html">published strength numbers</a> measure.</p>
+<section id="how-to-play" class="level2">
+<h2 data-anchor-id="how-to-play">How to play</h2>
+<ul>
+<li><strong>Roll</strong> starts the game and every turn after it. On the opening roll both sides throw one die and the higher one moves first.</li>
+<li><strong>Click a checker, then the point you want it on.</strong> Legal destinations light up as soon as a checker is selected; clicking the same checker again puts it back down. The bar and the bear-off tray are click targets like any point.</li>
+<li><strong>The turn plays itself out.</strong> There is no confirm button — when the last half-move of the roll is entered, the play is committed and Raccoon replies.</li>
+<li><strong>Undo</strong> takes back everything you have entered since the dice were rolled.</li>
+<li><strong>Hint</strong> ranks the legal plays for the current roll, so you can see what the engine would do before committing to your own move. After you move, the panel shows what it thought of the play you chose.</li>
+<li><strong>New game</strong> starts over.</li>
+</ul>
+</section>
+<section id="rules-in-force" class="level2">
+<h2 data-anchor-id="rules-in-force">Rules in force</h2>
+<p>Cubeless money game: gammons count double, backgammons triple, and there is no doubling cube — the engine does not handle one yet. The engine picks its move by evaluating every legal play with a single forward pass of the network, which is exactly the 0-ply value lookahead the <a href="./strength.html">published strength numbers</a> measure. You are playing the measured engine, at full strength, with no handicap and no adjustable level.</p>
+<p>Everything runs on your machine. The network is downloaded once — about 47 MB, the first time the engine is asked to think — and evaluated locally from then on; no position you play leaves your browser.</p>
+<p>To load a specific position instead of playing one out, use <a href="./analyse.html">the analyser</a>.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <!-- Boots the engine UI on any page containing a .raccoon-app container.
@@ -590,7 +613,7 @@ ul.task-list li input[type="checkbox"] {
 <p><a href="mailto:hello@raccoonbg.com">hello@raccoonbg.com</a></p>
 </div>
     <div class="nav-footer-right">
-<p><a href="./privacy.html">Privacy</a> · <a href="./terms.html">Terms</a> · <a href="https://research.raccoonbg.com">Research</a></p>
+<p><a href="./privacy.html">Privacy</a> · <a href="./terms.html">Terms</a> · <a href="./changelog.html">Changelog</a> · <a href="https://research.raccoonbg.com">Research</a></p>
 </div>
   </div>
 </footer>
