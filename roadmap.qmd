@@ -1,0 +1,67 @@
+---
+title: "Roadmap"
+subtitle: "Five milestones, each with the opponent it has to beat"
+---
+
+::: {.lead}
+Nothing here is called done until it has beaten a named opponent on a metric fixed
+before the run, at a sample size that makes the result mean something. One
+milestone has cleared that bar. The other four have not.
+:::
+
+### 1. A network stronger than GNU Backgammon at 0-ply — **Done**
+
+A residual network, trained by distilling 40M positions labelled with GNU
+Backgammon's 2-ply search, that beats GNU Backgammon's own network at equal search
+depth on cubeless evaluations.
+
+*Measured two independent ways:* PR {{< var engine.pr >}} against
+{{< var engine.gnubg_0ply_pr >}} on the BGSage money benchmark, and
+{{< var engine.ppg_edge >}} ± {{< var engine.ppg_ci >}} points per game across
+{{< var engine.ppg_n >}} head-to-head games. **[See the evidence](strength.qmd).**
+
+### 2. Search on top of the network, past GNU Backgammon at 2-ply — **Next**
+
+The current engine does no search at all. Adding one — the hard part in
+backgammon being the chance nodes between every pair of decisions — should be
+worth more than any further network training.
+
+*The bar:* BGSage benchmark PR below {{< var engine.gnubg_2ply_pr >}}, GNU
+Backgammon's 2-ply score, on the same {{< var engine.pr_n >}} decisions.
+
+### 3. A cube model better than the Janowski formula — **Planned**
+
+The doubling cube is half of competitive backgammon and the engine does not
+handle it at all today. Cubeful equity is currently approximated everywhere by
+the Janowski formula with a fitted cube-life index; a model trained to predict
+it directly should do better.
+
+*The bar:* lower cube error than the Janowski implementations in current engines,
+on money-game double/take/pass decisions with rollout references.
+
+### 4. Match play — **Planned**
+
+Everything above is money game. Match play changes the objective: equity is
+measured in match-winning chances, which makes both checker play and cube
+decisions score-dependent.
+
+*The bar:* match-equity-aware evaluation and cube handling, benchmarked on
+recorded match decisions rather than money-game ones.
+
+### 5. The engine behind a REST API — **Planned**
+
+The board on this site is deliberately basic, and a polished interface is not
+something we plan to build. The better answer is to expose the engine cleanly and
+let people who build interfaces build them: positions in, ranked plays and
+equities out, over HTTP, with no Python to install.
+
+*The bar:* a documented, stable, public endpoint that a front-end developer can
+build a real product against. If that is you, [tell us what you need from
+it](who.qmd) — this milestone is much easier to design with a first consumer in
+the room.
+
+---
+
+For what has already shipped and when, see the [changelog](changelog.qmd). For the
+experiments behind each step, including the ones that did not work, see
+[research.raccoonbg.com](https://research.raccoonbg.com).

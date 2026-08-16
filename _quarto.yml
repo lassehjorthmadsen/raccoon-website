@@ -11,16 +11,16 @@ project:
   resources:
     - CNAME
     - app/**
-    # Redirect stubs for the research pages that used to live at this domain,
-    # plus the catch-all 404. Plain HTML, copied verbatim — the render list
-    # only picks up .qmd.
+    # Redirect stubs for the research pages that used to live at this domain
+    # and for the pages this site renamed, plus the catch-all 404. Plain HTML,
+    # copied verbatim — the render list only picks up .qmd.
     - "*.html"
   render:
     - "*.qmd"
 
 website:
   title: "Raccoon Backgammon"
-  description: "A modern neural engine for backgammon — play it and analyse positions in your browser"
+  description: "A free, open neural engine for backgammon — play it and analyse positions in your browser, nothing to install"
   site-url: https://raccoonbg.com
   favicon: app/assets/favicon.svg
   open-graph: true
@@ -28,25 +28,27 @@ website:
   page-footer:
     left: "**{{< var company.name >}}** · CVR {{< var company.cvr >}} · {{< var company.country >}}"
     center: "[{{< var company.email >}}](mailto:{{< var company.email >}})"
-    right: "[Privacy](privacy.qmd) · [Terms](terms.qmd) · [Research](https://research.raccoonbg.com)"
+    right: "[Privacy](privacy.qmd) · [Terms](terms.qmd) · [Changelog](changelog.qmd) · [Research](https://research.raccoonbg.com)"
   navbar:
     title: "Raccoon Backgammon"
     left:
+      - text: "What"
+        file: index.qmd
+      - text: "Who"
+        file: who.qmd
+      - text: "How"
+        file: how.qmd
+      - text: "Roadmap"
+        file: roadmap.qmd
+      - text: "Strength"
+        file: strength.qmd
+      # Both live surfaces of the product stay one click from every page.
       - text: "Play"
-        file: play.qmd
-      - text: "Analyse"
-        file: analyse.qmd
-      - text: "Engine"
-        file: engine.qmd
-      - text: "Research"
-        href: https://research.raccoonbg.com
-      - text: "Changelog"
-        file: changelog.qmd
-    right:
-      - text: "Team"
-        file: team.qmd
-      - text: "Contact"
-        file: contact.qmd
+        menu:
+          - text: "Play a game"
+            file: play.qmd
+          - text: "Analyse a position"
+            file: analyse.qmd
 
 format:
   html:

@@ -1,11 +1,14 @@
 ---
-title: "Team"
-subtitle: "Who builds Raccoon"
+title: "Who"
+subtitle: "The company and the person behind Raccoon"
 ---
 
-Raccoon is built by **{{< var company.name >}}**, a one-person research and
-development company registered in {{< var company.country >}}
-(CVR [{{< var company.cvr >}}]({{< var founder.cvr_record >}})).
+Raccoon Backgammon is the product of **{{< var company.name >}}**, a one-person
+research and development company registered in {{< var company.country >}} under
+CVR [{{< var company.cvr >}}]({{< var founder.cvr_record >}}). *Tekst og tal* is
+the registered company name and predates the engine; *Raccoon Backgammon* is what
+it builds. Both names refer to the same business, and the CVR record linked above
+is its public entry in the Danish company register.
 
 ::: {.founder-card}
 ![]({{< var founder.photo >}}){.founder-photo fig-alt="Lasse Hjorth Madsen"}
@@ -21,18 +24,23 @@ interests: applied machine learning, and backgammon, a game whose strongest
 engines have not been rebuilt with modern methods in twenty-five years. He also
 writes as a freelance journalist, for [Zetland](https://www.zetland.dk/) among
 others.
+:::
 
-Verify independently:
+## Verify independently
+
+Every claim on this site can be checked somewhere that is not this site:
 
 - **LinkedIn** — [linkedin.com/in/lassehjorthmadsen]({{< var founder.linkedin >}})
-- **GitHub** — [github.com/lassehjorthmadsen]({{< var founder.github >}}) — the
-  engine, training pipelines and every experiment write-up, MIT-licensed.
+- **GitHub** — [github.com/lassehjorthmadsen]({{< var founder.github >}})
+- **The engine** — [github.com/lassehjorthmadsen/raccoon]({{< var repo.engine >}}) —
+  the network, training pipelines and every experiment write-up, MIT-licensed.
+- **This website** — [github.com/lassehjorthmadsen/raccoon-website]({{< var repo.website >}}) —
+  including the browser port of the engine and the tests that gate its deploy.
 - **Danish company register (CVR)** —
   [{{< var company.name >}}, CVR {{< var company.cvr >}}]({{< var founder.cvr_record >}}) —
   the official public record of the company behind this site.
 - **Personal site** — [tekstogtal.dk]({{< var founder.site >}})
 - **Email** — [{{< var company.email >}}](mailto:{{< var company.email >}})
-:::
 
 ## How we work
 
@@ -51,6 +59,25 @@ learning and search code is written from scratch.
 
 **Training runs on Google Cloud** — preemptible GPU instances for network
 training, Cloud Storage for datasets and checkpoints.
+
+## Get in touch
+
+**Email** — [{{< var company.email >}}](mailto:{{< var company.email >}}).
+Bug reports and questions about the engine are best filed as
+[issues]({{< var repo.engine >}}/issues).
+
+We are especially interested in hearing from:
+
+- **Front-end and UI developers.** The board on this site is deliberately
+  minimal, and a polished interface is not on our
+  [roadmap](roadmap.qmd) — we would rather expose the engine well and let
+  someone who does interfaces build the interface.
+- **Backgammon players and analysts** with labelled position sets, rollout
+  archives, or match databases we could benchmark against.
+- **Researchers** working on stochastic games, distillation, or search-free
+  evaluation.
+- **Tool authors** who would like to embed the engine — it already speaks a
+  UCI-style text protocol built for exactly that. See [How](how.qmd).
 
 ## Company details
 

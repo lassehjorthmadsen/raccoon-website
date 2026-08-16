@@ -1,0 +1,84 @@
+---
+title: "Strength"
+subtitle: "Two independent measurements against GNU Backgammon"
+---
+
+::: {.lead}
+The claim is narrow and it is the only one we make: on cubeless checker play,
+Raccoon's network is stronger than GNU Backgammon's network at the same search
+depth — none. Two measurements support it, one on a fixed benchmark of scored
+decisions, one from 18,000 games of actual play.
+:::
+
+## 1. The BGSage money benchmark
+
+A fixed corpus of 500 self-play money games. Every non-trivial decision in it
+carries a reference cubeless equity computed at adaptive precision — the closest
+decisions get full rollouts, the rest get deep static evaluations — so an engine
+can be scored on how much equity it gives away per decision rather than on who
+won.
+
+The benchmark data was published by **BGSage**
+([repository](https://github.com/markbgsage/bgsage),
+[bot performance study](https://www.bgsage.ai/botperformance/)), and this project
+is in their debt for making it available. Scoring one engine against another
+honestly is otherwise the most expensive part of the work.
+
+| Engine | Search | PR (n = {{< var engine.pr_n >}}) | Blunders |
+|---|---|---|---|
+| GNU Backgammon | full-width, 2 ply | **{{< var engine.gnubg_2ply_pr >}}** | 11 |
+| **Raccoon `{{< var engine.network >}}`** | none — one network evaluation | **{{< var engine.pr >}}** | 19 |
+| GNU Backgammon | none — one network evaluation | **{{< var engine.gnubg_0ply_pr >}}** | 95 |
+
+*PR is mean move-selection error × 500 — `mean(max(0, best_equity − chosen_equity)) × 500`
+— so lower is better and zero is perfect. A blunder is a single decision costing
+more than 0.08 points. All three engines were scored on the same
+{{< var engine.pr_n >}} checker decisions, with cubeless references at three
+precision tiers: 5,695 rollout, 2,842 three-ply-team, 6,156 three-ply. The
+corpus's 2,842 cube decisions are excluded, because none of these engines is
+being scored on the cube. These figures are not comparable with BGSage's own
+published PR numbers, which are cubeful and do include cube decisions.*
+
+*One caution on our own number: {{< var engine.pr >}} is the score of this
+particular checkpoint, picked because it was the best. The same training recipe
+averages PR {{< var engine.pr_plateau >}} (SD 0.023) across epochs 15–24, and that
+is the fairer reading of the method's level. Either number is well clear of
+{{< var engine.gnubg_0ply_pr >}}.*
+
+## 2. Head-to-head, {{< var engine.ppg_n >}} games
+
+A benchmark scores decisions in isolation. This measures what happens when the two
+engines simply play each other: cubeless money game, seats alternated, both sides
+picking moves with a single network evaluation.
+
+| Measure | Result | 95% CI | Games |
+|---|---|---|---|
+| **Points per game vs GNU Backgammon 0-ply, variance-reduced** | **{{< var engine.ppg_edge >}}** | ± {{< var engine.ppg_ci >}} | {{< var engine.ppg_n >}} |
+| The same games, plain unadjusted average | {{< var engine.ppg_raw >}} | ± {{< var engine.ppg_raw_ci >}} | {{< var engine.ppg_n >}} |
+
+*The two rows are the same games read two ways. Backgammon results are dominated
+by the dice, so the raw average still spans zero after {{< var engine.ppg_n >}}
+games and settles nothing. The variance-reduced row subtracts the luck in each
+roll — a control-variate technique standard in GNU Backgammon's and XG's rollouts
+— which is worth about {{< var engine.vr_factor >}} in variance here. Matching
+that confidence interval by counting points would have taken roughly
+{{< var engine.vr_equiv_games >}} games.*
+[*How the variance reduction works, and why it is unbiased*](https://research.raccoonbg.com/variance_reduction.html)
+
+## The engine you play here is the engine that was measured
+
+The browser runs the same network exported to ONNX, and that exported file was
+re-scored on the same benchmark at the same sample size: PR
+{{< var engine.onnx_pr >}} for the ONNX file against {{< var engine.ckpt_pr >}}
+for the PyTorch checkpoint. Nothing was cut down to fit in a browser tab.
+
+## What this does not claim
+
+**Checker play only, and cubeless.** No doubling cube, no match play, no cube
+decisions of any kind — a strong cube handler could beat this engine comfortably
+in a real match while being worse at moving checkers. Both are milestones on the
+[roadmap](roadmap.qmd), and neither has been measured because neither exists yet.
+
+**Against GNU Backgammon, not against everything.** GNU Backgammon is the
+strongest freely available engine and the natural reference; the commercial
+engines are closed, and we have not benchmarked against them.

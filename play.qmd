@@ -3,19 +3,49 @@ title: "Play Raccoon"
 subtitle: "Cubeless money game, in your browser"
 ---
 
+::: {.lead}
+The interface is basic and rough around the edges, and a polished UI is not on the
+roadmap at the moment — the work goes into the engine. If you build backgammon
+front-ends, we would like to hear how the engine could best be exposed for you to
+consume; [get in touch](who.qmd), and see
+[milestone 5](roadmap.qmd) for where that is heading.
+:::
+
 ::: {.raccoon-app data-mode="play" data-size="full"}
 :::
 
 ::: {.app-fallback}
 The board needs JavaScript and WebAssembly. The same engine runs
-[in a terminal](engine.qmd) if you would rather not use a browser.
+[in a terminal](how.qmd) if you would rather not use a browser.
 :::
 
-**How to play.** Roll, then click a checker and its destination. The engine
-replies immediately and shows what it thought of your move. Everything runs on
-your machine — the network is downloaded once and evaluated locally.
+## How to play
 
-**Rules in force.** Cubeless money game: gammons and backgammons count double
-and triple, and there is no doubling cube yet. The engine picks its move by
-evaluating every legal play with one forward pass of the network — the same
-0-ply value lookahead the [published strength numbers](engine.qmd) measure.
+- **Roll** starts the game and every turn after it. On the opening roll both sides
+  throw one die and the higher one moves first.
+- **Click a checker, then the point you want it on.** Legal destinations light up
+  as soon as a checker is selected; clicking the same checker again puts it back
+  down. The bar and the bear-off tray are click targets like any point.
+- **The turn plays itself out.** There is no confirm button — when the last
+  half-move of the roll is entered, the play is committed and Raccoon replies.
+- **Undo** takes back everything you have entered since the dice were rolled.
+- **Hint** ranks the legal plays for the current roll, so you can see what the
+  engine would do before committing to your own move. After you move, the panel
+  shows what it thought of the play you chose.
+- **New game** starts over.
+
+## Rules in force
+
+Cubeless money game: gammons count double, backgammons triple, and there is no
+doubling cube — the engine does not handle one yet. The engine picks its move by
+evaluating every legal play with a single forward pass of the network, which is
+exactly the 0-ply value lookahead the [published strength
+numbers](strength.qmd) measure. You are playing the measured engine, at full
+strength, with no handicap and no adjustable level.
+
+Everything runs on your machine. The network is downloaded once — about 47 MB, the
+first time the engine is asked to think — and evaluated locally from then on;
+no position you play leaves your browser.
+
+To load a specific position instead of playing one out, use
+[the analyser](analyse.qmd).

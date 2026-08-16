@@ -17,12 +17,37 @@ founder:
   linkedin: "https://www.linkedin.com/in/lassehjorthmadsen/"
   cvr_record: "https://datacvr.virk.dk/enhed/virksomhed/34101302"
 
+repo:
+  engine: "https://github.com/lassehjorthmadsen/raccoon"
+  website: "https://github.com/lassehjorthmadsen/raccoon-website"
+
+# Every number below is a measurement recorded in ../raccoon. Change it here,
+# never in prose, and only against a result file in that repo.
 engine:
   network: "exp018-ep22"
   params: "11.9M"
+
+  # BGSage money benchmark, checker decisions only, cubeless references.
+  # experiments/exp018-benchmark/results/exp018_ep22.json and
+  # experiments/exp015-benchmark/results/gnubg_{0,2}_ply.json
   pr: "0.95"
   pr_n: "14,693"
   gnubg_0ply_pr: "2.14"
   gnubg_2ply_pr: "0.56"
-  ppg_edge: "+0.046 ± 0.005"
-  ppg_n: "6,000"
+  # 0.95 is this checkpoint; the recipe's own level across epochs 15–24 is
+  # 0.99 (SD 0.023) — docs/pretraining_analysis.qmd:1216. Quoting 0.95 as the
+  # recipe's strength would contradict the research site.
+  pr_plateau: "0.99"
+  onnx_pr: "0.9500"
+  ckpt_pr: "0.9498"
+
+  # Head-to-head vs GNUBG 0-ply, variance-reduced, pooled over both seed
+  # families — commit c72768f, docs/variance_reduction.qmd:703. The earlier
+  # +0.046 / n=6,000 was one arm of this and must not be quoted as strength.
+  ppg_edge: "+0.047"
+  ppg_ci: "0.003"
+  ppg_n: "18,000"
+  ppg_raw: "+0.048"
+  ppg_raw_ci: "0.020"
+  vr_factor: "54×"
+  vr_equiv_games: "970,000"

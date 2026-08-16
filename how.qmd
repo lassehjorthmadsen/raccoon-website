@@ -1,0 +1,67 @@
+---
+title: "How"
+subtitle: "The network, in brief — and where the full write-ups live"
+---
+
+Raccoon is a single neural network and no search. When it is your opponent's turn
+it generates every legal play for the dice, encodes all of them at once, and
+evaluates them in one batched forward pass; the play with the best value wins. The
+network's value head predicts six mutually exclusive outcomes — win, gammon and
+backgammon, each way — from which cubeless equity follows directly.
+
+That is the whole move-selection algorithm. There is no tree search, no rollout
+and no policy head at play time, which is why it answers in milliseconds in a
+browser tab and still [outplays GNU Backgammon's own network](strength.qmd).
+
+## What the network is
+
+| | |
+|---|---|
+| Architecture | 10-block, 256-channel residual network — {{< var engine.params >}} parameters |
+| Input | A (26, 2, 12) tensor: checker planes, bar/borne-off/dice broadcasts, and handcrafted pip, blot, anchor and contact features |
+| Value head | Six mutually exclusive outcomes — win, gammon, backgammon, each way — from which cubeless equity follows |
+| Move selection | 0-ply value lookahead: every legal play is evaluated in one batched forward pass, no search |
+| Training | Supervised distillation of 40M positions labelled by GNU Backgammon's 2-ply search |
+| In the browser | The same weights exported to ONNX and run client-side by ONNX Runtime Web |
+
+The browser really does run the measured network: the exported file scores
+PR {{< var engine.onnx_pr >}} on the benchmark against {{< var engine.ckpt_pr >}}
+for the PyTorch checkpoint it came from. [The numbers in full](strength.qmd).
+
+## Run it yourself
+
+The engine that plays you here is the one you can download. It is MIT-licensed
+Python and PyTorch, with game rules from
+[OpenSpiel](https://openspiel.readthedocs.io/).
+
+```bash
+git clone https://github.com/lassehjorthmadsen/raccoon.git
+cd raccoon
+make setup          # editable install with dev dependencies
+make test           # run the test suite
+make play           # play against Raccoon in the terminal
+```
+
+## Embedding it
+
+The engine speaks the Raccoon Game Protocol, a UCI-style line protocol over
+stdin/stdout intended for analysis GUIs — see
+[`raccoon/protocol/rgp.py`]({{< var repo.engine >}}/blob/main/raccoon/protocol/rgp.py).
+Exposing the same engine over HTTP, so a front-end developer never has to run
+Python at all, is [milestone 5 on the roadmap](roadmap.qmd). If you are building a
+tool and want to embed Raccoon before then, [get in touch](who.qmd).
+
+## Where the work is published
+
+Every experiment behind the engine is written up at
+[research.raccoonbg.com](https://research.raccoonbg.com): one hypothesis, one
+primary metric fixed before the run, every checkpoint scored against it with
+sample sizes and confidence intervals — including the runs that failed and the
+measurement bugs found in our own evaluation code. Start with
+[the distillation results](https://research.raccoonbg.com/pretraining_analysis.html),
+which is how the current network was trained, or
+[variance reduction](https://research.raccoonbg.com/variance_reduction.html),
+which is how it was measured against GNU Backgammon.
+
+It is a working lab notebook rather than documentation, and it reads like one.
+The short version is on [Strength](strength.qmd).

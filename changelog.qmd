@@ -3,6 +3,20 @@ title: "Changelog"
 subtitle: "What shipped, when"
 ---
 
+## 2026-08 — The site says What, Who, How, Roadmap, Strength, Play
+
+- The site was restructured around six pages so that a first-time visitor can see
+  what Raccoon is, why it exists and how strong it is without reading the research
+  notes. All strength numbers now live on one [Strength](strength.qmd) page, and
+  the development plan is written down on [Roadmap](roadmap.qmd).
+- **Corrected number:** the head-to-head result against GNU Backgammon is
+  +0.047 ± 0.003 points per game over 18,000 games — the pooled figure across both
+  seed families. The site previously quoted +0.046 ± 0.005 over 6,000 games, which
+  was one arm of that measurement.
+- The "compute per decision" column was dropped from the strength tables. The
+  seconds quoted in it were never measured; the tables now say what search each
+  engine does, which is the comparison that was meant.
+
 ## 2026-08 — Raccoon plays in the browser
 
 - The `{{< var engine.network >}}` network runs client-side via ONNX Runtime
@@ -22,14 +36,14 @@ subtitle: "What shipped, when"
   than optimising the turn as a whole. It cost 0.062 points on the one doubles
   turn in six where the difference mattered. Fixing the search — with no change
   to the network — took the margin over GNU Backgammon at 0-ply from
-  +0.013 to {{< var engine.ppg_edge >}} points per game.
+  +0.013 to +0.046 points per game.
   [How it was found](https://research.raccoonbg.com/variance_reduction.html#exp020).
   The browser engine plays the fixed way.
 
 ## 2026-08 — First head-to-head win over GNU Backgammon
 
 - Variance-reduced rollouts put `{{< var engine.network >}}` ahead of GNU
-  Backgammon at 0-ply over {{< var engine.ppg_n >}} games — the first time a
+  Backgammon at 0-ply over 6,000 games — the first time a
   Raccoon network has been shown to beat the teacher it was distilled from in
   actual play. The plain average over the same games settles nothing at
   ±0.035; the variance reduction is worth about 55× as many games.
