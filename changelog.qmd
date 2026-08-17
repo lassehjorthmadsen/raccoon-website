@@ -3,6 +3,31 @@ title: "Changelog"
 subtitle: "What shipped, when"
 ---
 
+## 2026-08 — The board looks like a backgammon board
+
+- **Checkers no longer overlap.** A point is now exactly five checker diameters
+  long, the way it is on a real board, so a stack of five sits edge to edge
+  instead of each checker hiding a slice of the one below it. Checkers gained the
+  turned rim a real one has, and the board is drawn taller and wider to pay for
+  the room.
+- **The dice landed on top of the checkers.** They now sit in the clear band
+  between the point tips, on the roller's side of the bar. In the opening
+  position they had been covering the fifth checker of the six point.
+- **Point numbers moved onto the frame**, where nothing competes with them, and
+  are large enough to read.
+- **A sixth checker on the bar is visible again.** The bar was capped at five with
+  no count, so anything beyond that was silently not drawn; it now carries the
+  same numeral the points do.
+- **Raccoon's turn can be followed.** Its dice land, and its move appears a beat
+  later, instead of the whole turn arriving in one frame. A line above the board
+  alternates between the two sides — "Raccoon rolled 54: 13/8 24/20", then "You
+  rolled 51: 13/8 24/23".
+- **The ranked-move table moved under the board** and shows the network's full
+  six-outcome split — W, Wg, Wbg, Lg, Lbg — in the cumulative convention XG and
+  GNU Backgammon use. "Loss" is now "Diff", and the heading over the table says
+  "Raccoon ranking of moves" rather than asking the reader to guess.
+- The tab icon is a raccoon rather than a placeholder triangle.
+
 ## 2026-08 — The site says What, Who, How, Roadmap, Strength, Play
 
 - The site was restructured around six pages so that a first-time visitor can see

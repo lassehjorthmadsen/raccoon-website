@@ -52,8 +52,10 @@ main table th {
   overflow: hidden;
 }
 
+/* Roughly the booted height before any analysis appears: the board's own
+   1012 × 664 ratio at full width, plus the padding around it. */
 .raccoon-app[data-size="full"] {
-  min-height: 520px;
+  min-height: 480px;
 }
 
 /* Shown only when the app never boots (no JS, no WebAssembly). The script
@@ -87,7 +89,9 @@ main table th {
 
 .rb-app {
   display: grid;
-  grid-template-columns: minmax(0, 1.6fr) minmax(260px, 1fr);
+  /* The panel is capped rather than proportional: it holds a status line, four
+     buttons and a move list, and every pixel past that belongs to the board. */
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 300px);
   gap: 1rem;
   padding: 1rem;
   align-items: start;
@@ -97,6 +101,12 @@ main table th {
   .rb-app { grid-template-columns: 1fr; }
 }
 
+/* One column and a narrow board need much less reserved height than the desktop
+   layout does; without this the pre-boot placeholder leaves a hole on a phone. */
+@media (max-width: 560px) {
+  .raccoon-app[data-size="full"] { min-height: 360px; }
+}
+
 /* The page theme places some element types into its own named grid lines —
    aside, figure and friends are margin-note candidates in Quarto's article
    layout. Those line names do not exist in this grid, and an item asking for
@@ -104,6 +114,12 @@ main table th {
    the flow this grid defines. */
 .rb-app > * {
   grid-column: auto;
+}
+
+/* Nine columns of equities do not fit beside the board. Class specificity beats
+   the rule above, which is what keeps this exception working. */
+.rb-app > .rb-analysis {
+  grid-column: 1 / -1;
 }
 
 .rb-board {
@@ -135,11 +151,18 @@ main table th {
 .bg-checker--theirs { fill: #2b2f38; }
 .bg-checker--selected { stroke: var(--raccoon-accent); stroke-width: 4; }
 
-.bg-count { font: 600 20px system-ui, sans-serif; text-anchor: middle; }
+/* The turned ring a real checker has. Five same-coloured discs touching edge to
+   edge read as one blob without it. */
+.bg-checker-rim { fill: none; stroke-width: 1; }
+.bg-checker-rim--mine { stroke: rgba(0, 0, 0, 0.16); }
+.bg-checker-rim--theirs { stroke: rgba(255, 255, 255, 0.18); }
+
+.bg-count { font: 600 22px system-ui, sans-serif; text-anchor: middle; }
 .bg-count--mine { fill: #2b2f38; }
 .bg-count--theirs { fill: #fbf7f0; }
 
-.bg-pointno { font: 500 13px system-ui, sans-serif; fill: #5c4023; text-anchor: middle; }
+/* On the frame, not the felt — cream on wood, like the tray labels. */
+.bg-pointno { font: 500 17px system-ui, sans-serif; fill: #d8c6a8; text-anchor: middle; }
 .bg-tray-label { font: 600 13px system-ui, sans-serif; fill: #f0e6d6; text-anchor: middle; }
 .bg-borne--mine { fill: #fbf7f0; }
 .bg-borne--theirs { fill: #2b2f38; }
@@ -152,6 +175,18 @@ main table th {
 /* --- Side panel ---------------------------------------------------------- */
 
 .rb-panel { font-size: 0.92rem; }
+
+/* The running commentary: who rolled what, and what they played. Reserves its
+   line so the panel does not jump between beats of the engine's turn. */
+.rb-lastplay {
+  min-height: 1.5em;
+  margin: 0 0 0.15rem;
+  font-size: 0.95rem;
+  color: var(--raccoon-ink);
+}
+.rb-lastplay .rb-log-who { font-weight: 600; }
+.rb-lastplay-dice { font-weight: 600; font-variant-numeric: tabular-nums; }
+.rb-lastplay-move { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
 
 .rb-status {
   min-height: 1.6em;
@@ -188,7 +223,9 @@ main table th {
 }
 .rb-xgid-actions { display: flex; gap: 0.4rem; margin-top: 0.4rem; }
 
-.rb-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin: 0 0 0.5rem; }
+/* Capped: full width under the board would strand the equities a screen away
+   from the play they belong to. */
+.rb-table { width: 100%; max-width: 46rem; border-collapse: collapse; font-size: 0.85rem; margin: 0 0 0.5rem; }
 .rb-table th {
   text-align: left;
   font-weight: 600;
@@ -197,15 +234,22 @@ main table th {
   padding: 0.25rem 0.35rem;
 }
 .rb-table td { padding: 0.25rem 0.35rem; border-bottom: 1px solid #efe9df; }
-.rb-rank { color: var(--raccoon-muted); }
-.rb-move { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
-.rb-eq, .rb-loss, .rb-win, .rb-gam { text-align: right; font-variant-numeric: tabular-nums; }
-.rb-gam, .rb-win, .rb-eq, .rb-loss { white-space: nowrap; }
+.rb-rank { color: var(--raccoon-muted); width: 1.5rem; }
+.rb-move { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; width: 99%; }
+/* Every figure column: right-aligned, tabular, and never wrapped. The Play
+   column takes all the slack, which is what stops moves breaking over two
+   lines the way they did in the old narrow panel. */
+.rb-num, .rb-table th.rb-num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.rb-num--faint { color: var(--raccoon-muted); }
 .rb-analysis-title { font-size: 0.82rem; font-weight: 600; color: var(--raccoon-muted); margin: 0.2rem 0 0.3rem; }
-.rb-loss { color: #a5462f; }
+.rb-diff { color: #a5462f; }
 .rb-row--played { background: #fdf6ea; }
 
-.rb-note { font-size: 0.78rem; color: var(--raccoon-muted); margin: 0.3rem 0 0.6rem; }
+/* Nine columns is more than a phone has room for; let the table scroll inside
+   itself rather than pushing the page sideways. */
+.rb-analysis { overflow-x: auto; }
+
+.rb-note { font-size: 0.78rem; color: var(--raccoon-muted); margin: 0.3rem 0 0.6rem; max-width: 46rem; }
 
 .rb-log-list { list-style: none; padding: 0; margin: 0.4rem 0 0; font-size: 0.82rem; }
 .rb-log-list li { display: flex; gap: 0.5rem; padding: 0.12rem 0; }

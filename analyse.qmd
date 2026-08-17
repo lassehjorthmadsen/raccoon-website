@@ -8,7 +8,7 @@ Same engine as the [playable board](play.qmd), same rough edges — here you mov
 both sides, so you can set up a position and ask what the network makes of it.
 :::
 
-::: {.raccoon-app data-mode="analyse" data-size="full"}
+::: {.raccoon-app .column-page data-mode="analyse" data-size="full"}
 :::
 
 ::: {.app-fallback}

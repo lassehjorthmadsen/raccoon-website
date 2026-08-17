@@ -11,7 +11,7 @@ consume; [get in touch](who.qmd), and see
 [milestone 5](roadmap.qmd) for where that is heading.
 :::
 
-::: {.raccoon-app data-mode="play" data-size="full"}
+::: {.raccoon-app .column-page data-mode="play" data-size="full"}
 :::
 
 ::: {.app-fallback}
@@ -28,10 +28,12 @@ The board needs JavaScript and WebAssembly. The same engine runs
   down. The bar and the bear-off tray are click targets like any point.
 - **The turn plays itself out.** There is no confirm button — when the last
   half-move of the roll is entered, the play is committed and Raccoon replies.
+- **Watch Raccoon's turn.** Its dice land, then its move appears a beat later.
+  The line above the board says who rolled what and what they played, and the
+  table underneath ranks every play Raccoon considered for that roll.
 - **Undo** takes back everything you have entered since the dice were rolled.
 - **Hint** ranks the legal plays for the current roll, so you can see what the
-  engine would do before committing to your own move. After you move, the panel
-  shows what it thought of the play you chose.
+  engine would do before committing to your own move.
 - **New game** starts over.
 
 ## Rules in force
