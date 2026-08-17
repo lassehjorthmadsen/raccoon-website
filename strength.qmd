@@ -57,8 +57,10 @@ picking moves with a single network evaluation.
 | The same games, plain unadjusted average | {{< var engine.ppg_raw >}} | ± {{< var engine.ppg_raw_ci >}} | {{< var engine.ppg_n >}} |
 
 *The two rows are the same games read two ways. Backgammon results are dominated
-by the dice, so the raw average still spans zero after {{< var engine.ppg_n >}}
-games and settles nothing. The variance-reduced row subtracts the luck in each
+by the dice, so the plain average is a blunt instrument: after
+{{< var engine.ppg_n >}} games it still pins the edge down only to within
+± {{< var engine.ppg_raw_ci >}} points per game — enough to put Raccoon ahead,
+not enough to say by how much. The variance-reduced row subtracts the luck in each
 roll — a control-variate technique standard in GNU Backgammon's and XG's rollouts
 — which is worth about {{< var engine.vr_factor >}} in variance here. Matching
 that confidence interval by counting points would have taken roughly
