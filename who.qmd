@@ -1,45 +1,36 @@
 ---
 title: "Who"
-subtitle: "The company and the person behind Raccoon"
+subtitle: "Who's behind Raccoon?"
 ---
 
-Raccoon Backgammon is the product of **{{< var company.name >}}**, a one-person
-research and development company registered in {{< var company.country >}} under
-CVR [{{< var company.cvr >}}]({{< var founder.cvr_record >}}). *Tekst og tal* is
-the registered company name and predates the engine; *Raccoon Backgammon* is what
-it builds. Both names refer to the same business, and the CVR record linked above
-is its public entry in the Danish company register.
+## Development
 
-::: {.founder-card}
-![]({{< var founder.photo >}}){.founder-photo fig-alt="Lasse Hjorth Madsen"}
+<img src="{{< var founder.photo >}}" class="founder-photo" alt="{{< var founder.name >}}">
 
-### {{< var founder.name >}} {.founder-name}
+Raccoon is built by me, **{{< var founder.name >}}**, as a product from my small research 
+company, **Tekst og tal** (English: Text and Numbers).
 
-{{< var founder.role >}}
+The training pipelines and every experiment write-up are public and MIT-licensed, available at the 
+project's [research site](https://research.raccoonbg.com). 
 
-Lasse writes every line of Raccoon's machine-learning and search code, runs the
-experiments, and publishes each one — including the failures — on the
-[research site](https://research.raccoonbg.com). The work combines two long
-interests: applied machine learning, and backgammon, a game whose strongest
-engines have not been rebuilt with modern methods in twenty-five years. He also
-writes as a freelance journalist, for [Zetland](https://www.zetland.dk/) among
-others.
-:::
+The work combines two long interests: applied machine learning, and backgammon, a game 
+whose strongest engines have not been rebuilt with modern methods in twenty-five years. 
 
-## Verify independently
+## Lots of links
 
-Every claim on this site can be checked somewhere that is not this site:
+Many more details about the project (and about me) are available on other sites:
 
 - **LinkedIn** — [linkedin.com/in/lassehjorthmadsen]({{< var founder.linkedin >}})
 - **GitHub** — [github.com/lassehjorthmadsen]({{< var founder.github >}})
 - **The engine** — [github.com/lassehjorthmadsen/raccoon]({{< var repo.engine >}}) —
   the network, training pipelines and every experiment write-up, MIT-licensed.
 - **This website** — [github.com/lassehjorthmadsen/raccoon-website]({{< var repo.website >}}) —
-  including the browser port of the engine and the tests that gate its deploy.
+  including the browser port of the engine and the tests that gate its deploy. 
+- **Research site** [research.raccoonbg.com](https://research.raccoonbg.com).
 - **Danish company register (CVR)** —
   [{{< var company.name >}}, CVR {{< var company.cvr >}}]({{< var founder.cvr_record >}}) —
   the official public record of the company behind this site.
-- **Personal site** — [tekstogtal.dk]({{< var founder.site >}})
+- **Personal site** — [tekstogtal.dk]({{< var founder.site >}}) (In Danish, but with an English speaking digital twin to chat with.)
 - **Email** — [{{< var company.email >}}](mailto:{{< var company.email >}})
 
 ## How we work

@@ -9,7 +9,7 @@ before the run, at a sample size that makes the result mean something. One
 milestone has cleared that bar. The other four have not.
 :::
 
-### 1. A network stronger than GNU Backgammon at 0-ply — **Done**
+### 1. A network stronger than GNU Backgammon at 0-ply — **Done** ✅
 
 A residual network, trained by distilling 40M positions labelled with GNU
 Backgammon's 2-ply search, that beats GNU Backgammon's own network at equal search

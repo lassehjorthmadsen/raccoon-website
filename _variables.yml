@@ -10,7 +10,6 @@ company:
 
 founder:
   name: "Lasse Hjorth Madsen"
-  role: "Founder — data scientist and freelance journalist"
   photo: "app/assets/founder.jpg"
   site: "https://tekstogtal.dk"
   github: "https://github.com/lassehjorthmadsen"

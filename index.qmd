@@ -1,6 +1,6 @@
 ---
 title: "Raccoon Backgammon"
-subtitle: "A modern neural engine for backgammon — free, open, and running in your browser"
+subtitle: "A modern neural engine for backgammon"
 pagetitle: "Raccoon Backgammon — a modern neural engine you can play in your browser"
 ---
 
@@ -60,12 +60,3 @@ Backgammon's own network at equal search depth, and in direct play it wins
 The honest caveat: this is **checker play only, cubeless**. The doubling cube —
 half of competitive backgammon — and a search layer on top of the network are the
 next two milestones. [See the roadmap](roadmap.qmd).
-
-## Who builds it
-
-Raccoon is built by **{{< var company.name >}}** (CVR
-[{{< var company.cvr >}}]({{< var founder.cvr_record >}})), a one-person research
-and development company in {{< var company.country >}}, run by
-[{{< var founder.name >}}]({{< var founder.linkedin >}}). Raccoon Backgammon is
-that company's product; the engine, the training pipelines and every experiment
-write-up are public and MIT-licensed. [More about who is behind this](who.qmd).

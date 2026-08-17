@@ -10,3 +10,5 @@ node_modules/
 *.prep.onnx
 
 /.quarto/
+
+**/*.quarto_ipynb
