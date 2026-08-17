@@ -11,7 +11,11 @@ import { startingPosition } from "./engine/board.js";
 import { formatXgid, parseXgid } from "./engine/xgid.js";
 import { BoardView } from "./ui/boardview.js";
 import { Game } from "./ui/game.js";
-import { renderAnalysis, renderLog } from "./ui/analysis.js";
+import { renderAnalysis, renderLastPlay, renderLog } from "./ui/analysis.js";
+
+// Long enough to read a roll and a play off the board, short enough not to feel
+// like waiting. The engine itself answers in milliseconds.
+const PACE_MS = 800;
 
 // Resolved against this module's own URL so the site works wherever it is
 // mounted — the custom domain at the root, or a GitHub project subpath.
@@ -31,6 +35,7 @@ function mount(container, mode) {
   const game = new Game({
     engine,
     autoplay: !analysing,
+    pace: analysing ? 0 : PACE_MS,
     onChange: (state) => draw(container, board, state, analysing),
   });
 
@@ -64,6 +69,7 @@ function template(analysing) {
            and places them in named grid lines that do not exist here, which
            collapses the board to a thumbnail. -->
       <div class="rb-panel" role="complementary">
+        <p class="rb-lastplay"></p>
         <p class="rb-status" role="status"></p>
         <div class="rb-controls">
           <button type="button" data-act="roll" class="rb-btn rb-btn--primary">Roll</button>
@@ -84,9 +90,11 @@ function template(analysing) {
                </div>`
             : ""
         }
-        <div class="rb-analysis"></div>
         <div class="rb-log"></div>
       </div>
+      <!-- Outside the panel: nine columns of equities do not fit beside the
+           board, so the ranking spans the full width underneath it. -->
+      <div class="rb-analysis"></div>
     </div>`;
 }
 
@@ -101,11 +109,12 @@ function draw(container, board, game, analysing) {
   renderAnalysis(container.querySelector(".rb-analysis"), game.analysis, {
     caption:
       game.analysisFor === "engine"
-        ? "What Raccoon weighed up on its move"
+        ? "Raccoon ranking of moves"
         : game.analysisFor === "human"
           ? "Your options, best first"
           : "",
   });
+  renderLastPlay(container.querySelector(".rb-lastplay"), game);
   renderLog(container.querySelector(".rb-log"), game.log);
 
   container.querySelector('[data-act="roll"]').disabled =
@@ -116,7 +125,7 @@ function draw(container, board, game, analysing) {
   setStatus(container, describe(game, analysing));
 }
 
-function describe(game, analysing, played = game.log.at(-1)) {
+function describe(game, analysing) {
   if (game.phase === "gameover") {
     const { points, kind } = game.result;
     const who = points > 0 ? "You win" : "Raccoon wins";
@@ -131,7 +140,8 @@ function describe(game, analysing, played = game.log.at(-1)) {
   if (game.midDoubles) return "Doubles — two more half-moves.";
   if (!game.humanOnRoll && !analysing) return "Raccoon is moving…";
   if (game.selected !== null) return "Now click where the checker goes.";
-  if (played?.side === "engine") return "Raccoon played. Your move.";
+  // What Raccoon just played is on the last-play line above; this line stays an
+  // instruction rather than repeating it.
   return "Click a checker, then its destination.";
 }
 

@@ -149,7 +149,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -174,7 +174,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="lead">
 <p>The interface is basic and rough around the edges, and a polished UI is not on the roadmap at the moment — the work goes into the engine. If you build backgammon front-ends, we would like to hear how the engine could best be exposed for you to consume; <a href="./who.html">get in touch</a>, and see <a href="./roadmap.html">milestone 5</a> for where that is heading.</p>
 </div>
-<div class="raccoon-app" data-mode="play" data-size="full">
+<div class="raccoon-app column-page" data-mode="play" data-size="full">
 
 </div>
 <div class="app-fallback">
@@ -186,8 +186,9 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>Roll</strong> starts the game and every turn after it. On the opening roll both sides throw one die and the higher one moves first.</li>
 <li><strong>Click a checker, then the point you want it on.</strong> Legal destinations light up as soon as a checker is selected; clicking the same checker again puts it back down. The bar and the bear-off tray are click targets like any point.</li>
 <li><strong>The turn plays itself out.</strong> There is no confirm button — when the last half-move of the roll is entered, the play is committed and Raccoon replies.</li>
+<li><strong>Watch Raccoon’s turn.</strong> Its dice land, then its move appears a beat later. The line above the board says who rolled what and what they played, and the table underneath ranks every play Raccoon considered for that roll.</li>
 <li><strong>Undo</strong> takes back everything you have entered since the dice were rolled.</li>
-<li><strong>Hint</strong> ranks the legal plays for the current roll, so you can see what the engine would do before committing to your own move. After you move, the panel shows what it thought of the play you chose.</li>
+<li><strong>Hint</strong> ranks the legal plays for the current roll, so you can see what the engine would do before committing to your own move.</li>
 <li><strong>New game</strong> starts over.</li>
 </ul>
 </section>

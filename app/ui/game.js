@@ -27,11 +27,16 @@ export class Game {
    * analysing. With it off nobody moves on their own — the human plays both
    * sides and the board turns round to whoever is on roll, which is how an
    * analyser is expected to behave.
+   *
+   * `pace` is how long the engine's turn is held at each beat so a human can
+   * follow it. It defaults to zero: the engine is fast enough that roll, think
+   * and move otherwise land in a single frame, but the tests want that.
    */
-  constructor({ engine, onChange, autoplay = true }) {
+  constructor({ engine, onChange, autoplay = true, pace = 0 }) {
     this.#engine = engine;
     this.#onChange = onChange;
     this.autoplay = autoplay;
+    this.pace = pace;
     this.newGame();
   }
 
@@ -216,7 +221,14 @@ export class Game {
       this.#changed();
       return;
     }
-    this.log.push({ side: "human", dice: this.dice, moves: [...this.pending] });
+    // Flagged the same way the engine's second half of a double is, so the
+    // last-play line can join the four half-moves back into one turn.
+    this.log.push({
+      side: "human",
+      dice: this.dice,
+      moves: [...this.pending],
+      continuation: this.midDoubles,
+    });
     this.#endDecision(this.pending);
   }
 
@@ -260,6 +272,10 @@ export class Game {
   }
 
   async #playEngineTurn() {
+    // Three beats, each one a frame the player actually gets to see: the dice
+    // land (drawn by #beginDecision before this runs), the move appears on the
+    // board, and only then does the turn hand back.
+    await this.#hold();
     this.phase = "thinking";
     this.#changed();
 
@@ -274,16 +290,28 @@ export class Game {
     // On a double the engine's choice was scored by a specific continuation;
     // play that, rather than re-deciding and risking a different tie-break.
     if (best.continuation && !isTerminal(this.position)) {
+      this.phase = "moving";
+      this.#changed();
+      await this.#hold();
+
       for (const move of best.continuation.moves) this.position = applyHalfMove(this.position, move);
       this.log.push({ side: "engine", dice: this.dice, moves: best.continuation.moves, continuation: true });
       this.midDoubles = true;
-      this.phase = "moving";
+      this.#changed();
+      await this.#hold();
       this.#endDecision(best.continuation.moves);
       return;
     }
 
     this.phase = "moving";
+    this.#changed();
+    await this.#hold();
     this.#endDecision(best.moves);
+  }
+
+  /** A beat, so the eye can keep up. Free when `pace` is zero. */
+  #hold() {
+    return this.pace > 0 ? new Promise((resolve) => setTimeout(resolve, this.pace)) : Promise.resolve();
   }
 
   #finish() {
