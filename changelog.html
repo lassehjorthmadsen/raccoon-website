@@ -171,6 +171,12 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="corrected-what-you-can-run-outside-the-browser" class="level2">
+<h2 data-anchor-id="corrected-what-you-can-run-outside-the-browser">2026-08 — Corrected: what you can run outside the browser</h2>
+<ul>
+<li><strong>Corrected claim:</strong> the site said “the engine that plays you here is the one you can download” and that <code>make play</code> plays you against Raccoon. The trained weights are not in the engine repository, and <code>make play</code> without a checkpoint quietly starts an <em>untrained</em> network. <a href="./how.html">How it works</a> now says so, and points at the ONNX file this site actually runs, which is published in the website repository. Wiring the Python engine up to load it is part of <a href="./roadmap.html">milestone 5</a>.</li>
+</ul>
+</section>
 <section id="the-board-looks-like-a-backgammon-board" class="level2">
 <h2 data-anchor-id="the-board-looks-like-a-backgammon-board">2026-08 — The board looks like a backgammon board</h2>
 <ul>

@@ -246,12 +246,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="run-it-yourself" class="level2">
 <h2 data-anchor-id="run-it-yourself">Run it yourself</h2>
-<p>The engine that plays you here is the one you can download. It is MIT-licensed Python and PyTorch, with game rules from <a href="https://openspiel.readthedocs.io/">OpenSpiel</a>.</p>
+<p>The code is MIT-licensed Python and PyTorch, with game rules from <a href="https://openspiel.readthedocs.io/">OpenSpiel</a>.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/lassehjorthmadsen/raccoon.git</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> raccoon</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> setup          <span class="co"># editable install with dev dependencies</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> test           <span class="co"># run the test suite</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> play           <span class="co"># play against Raccoon in the terminal</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> play           <span class="co"># starts an untrained network — see the note below</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>The trained weights are not in that repository</strong>, and <code>make play</code> without a checkpoint quietly starts an untrained network that will play badly. The network this site actually runs <em>is</em> published — <code>exp018-ep22-fp32.onnx</code> under <code>app/models/</code> in the <a href="https://github.com/lassehjorthmadsen/raccoon-website">website repository</a>, the same file measured at PR 0.9500 — but loading it from the Python engine is not wired up yet. If you want to run the measured network outside a browser, <a href="./who.html">get in touch</a>; <a href="./roadmap.html">milestone 5</a> is about exposing it over HTTP so this stops being a caveat.</p>
 </section>
 <section id="embedding-it" class="level2">
 <h2 data-anchor-id="embedding-it">Embedding it</h2>
