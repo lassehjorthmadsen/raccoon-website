@@ -4,14 +4,21 @@
     "href": "who.html",
     "title": "Who",
     "section": "",
-    "text": "Raccoon Backgammon is the product of Tekst og tal, a one-person research and development company registered in Denmark under CVR 34101302. Tekst og tal is the registered company name and predates the engine; Raccoon Backgammon is what it builds. Both names refer to the same business, and the CVR record linked above is its public entry in the Danish company register."
+    "text": "Raccoon is built by me, Lasse Hjorth Madsen, as a product from my small research company, Tekst og tal (English: Text and Numbers).\nThe training pipelines and every experiment write-up are public and MIT-licensed, available at the project’s research site.\nThe work combines two long interests: applied machine learning, and backgammon, a game whose strongest engines have not been rebuilt with modern methods in twenty-five years."
   },
   {
-    "objectID": "who.html#verify-independently",
-    "href": "who.html#verify-independently",
+    "objectID": "who.html#development",
+    "href": "who.html#development",
     "title": "Who",
-    "section": "Verify independently",
-    "text": "Verify independently\nEvery claim on this site can be checked somewhere that is not this site:\n\nLinkedIn — linkedin.com/in/lassehjorthmadsen\nGitHub — github.com/lassehjorthmadsen\nThe engine — github.com/lassehjorthmadsen/raccoon — the network, training pipelines and every experiment write-up, MIT-licensed.\nThis website — github.com/lassehjorthmadsen/raccoon-website — including the browser port of the engine and the tests that gate its deploy.\nDanish company register (CVR) — Tekst og tal, CVR 34101302 — the official public record of the company behind this site.\nPersonal site — tekstogtal.dk\nEmail — hello@raccoonbg.com"
+    "section": "",
+    "text": "Raccoon is built by me, Lasse Hjorth Madsen, as a product from my small research company, Tekst og tal (English: Text and Numbers).\nThe training pipelines and every experiment write-up are public and MIT-licensed, available at the project’s research site.\nThe work combines two long interests: applied machine learning, and backgammon, a game whose strongest engines have not been rebuilt with modern methods in twenty-five years."
+  },
+  {
+    "objectID": "who.html#lots-of-links",
+    "href": "who.html#lots-of-links",
+    "title": "Who",
+    "section": "Lots of links",
+    "text": "Lots of links\nMany more details about the project (and about me) are available on other sites:\n\nLinkedIn — linkedin.com/in/lassehjorthmadsen\nGitHub — github.com/lassehjorthmadsen\nThe engine — github.com/lassehjorthmadsen/raccoon — the network, training pipelines and every experiment write-up, MIT-licensed.\nThis website — github.com/lassehjorthmadsen/raccoon-website — including the browser port of the engine and the tests that gate its deploy.\nResearch site research.raccoonbg.com.\nDanish company register (CVR) — Tekst og tal, CVR 34101302 — the official public record of the company behind this site.\nPersonal site — tekstogtal.dk (In Danish, but with an English speaking digital twin to chat with.)\nEmail — hello@raccoonbg.com"
   },
   {
     "objectID": "who.html#how-we-work",
@@ -133,13 +140,6 @@
     "text": "Where it stands\nThe first milestone is done. On the BGSage money benchmark Raccoon scores PR 0.95 against 2.14 for GNU Backgammon’s own network at equal search depth, and in direct play it wins +0.047 ± 0.003 points per game over 18,000 games. The evidence, in two tables.\nThe honest caveat: this is checker play only, cubeless. The doubling cube — half of competitive backgammon — and a search layer on top of the network are the next two milestones. See the roadmap."
   },
   {
-    "objectID": "index.html#who-builds-it",
-    "href": "index.html#who-builds-it",
-    "title": "Raccoon Backgammon",
-    "section": "Who builds it",
-    "text": "Who builds it\nRaccoon is built by Tekst og tal (CVR 34101302), a one-person research and development company in Denmark, run by Lasse Hjorth Madsen. Raccoon Backgammon is that company’s product; the engine, the training pipelines and every experiment write-up are public and MIT-licensed. More about who is behind this."
-  },
-  {
     "objectID": "changelog.html",
     "href": "changelog.html",
     "title": "Changelog",
@@ -256,7 +256,7 @@
     "href": "roadmap.html",
     "title": "Roadmap",
     "section": "",
-    "text": "Nothing here is called done until it has beaten a named opponent on a metric fixed before the run, at a sample size that makes the result mean something. One milestone has cleared that bar. The other four have not.\n\n\n1. A network stronger than GNU Backgammon at 0-ply — Done\nA residual network, trained by distilling 40M positions labelled with GNU Backgammon’s 2-ply search, that beats GNU Backgammon’s own network at equal search depth on cubeless evaluations.\nMeasured two independent ways: PR 0.95 against 2.14 on the BGSage money benchmark, and +0.047 ± 0.003 points per game across 18,000 head-to-head games. See the evidence.\n\n\n2. Search on top of the network, past GNU Backgammon at 2-ply — Next\nThe current engine does no search at all. Adding one — the hard part in backgammon being the chance nodes between every pair of decisions — should be worth more than any further network training.\nThe bar: BGSage benchmark PR below 0.56, GNU Backgammon’s 2-ply score, on the same 14,693 decisions.\n\n\n3. A cube model better than the Janowski formula — Planned\nThe doubling cube is half of competitive backgammon and the engine does not handle it at all today. Cubeful equity is currently approximated everywhere by the Janowski formula with a fitted cube-life index; a model trained to predict it directly should do better.\nThe bar: lower cube error than the Janowski implementations in current engines, on money-game double/take/pass decisions with rollout references.\n\n\n4. Match play — Planned\nEverything above is money game. Match play changes the objective: equity is measured in match-winning chances, which makes both checker play and cube decisions score-dependent.\nThe bar: match-equity-aware evaluation and cube handling, benchmarked on recorded match decisions rather than money-game ones.\n\n\n5. The engine behind a REST API — Planned\nThe board on this site is deliberately basic, and a polished interface is not something we plan to build. The better answer is to expose the engine cleanly and let people who build interfaces build them: positions in, ranked plays and equities out, over HTTP, with no Python to install.\nThe bar: a documented, stable, public endpoint that a front-end developer can build a real product against. If that is you, tell us what you need from it — this milestone is much easier to design with a first consumer in the room.\n\nFor what has already shipped and when, see the changelog. For the experiments behind each step, including the ones that did not work, see research.raccoonbg.com."
+    "text": "Nothing here is called done until it has beaten a named opponent on a metric fixed before the run, at a sample size that makes the result mean something. One milestone has cleared that bar. The other four have not.\n\n\n1. A network stronger than GNU Backgammon at 0-ply — Done ✅\nA residual network, trained by distilling 40M positions labelled with GNU Backgammon’s 2-ply search, that beats GNU Backgammon’s own network at equal search depth on cubeless evaluations.\nMeasured two independent ways: PR 0.95 against 2.14 on the BGSage money benchmark, and +0.047 ± 0.003 points per game across 18,000 head-to-head games. See the evidence.\n\n\n2. Search on top of the network, past GNU Backgammon at 2-ply — Next\nThe current engine does no search at all. Adding one — the hard part in backgammon being the chance nodes between every pair of decisions — should be worth more than any further network training.\nThe bar: BGSage benchmark PR below 0.56, GNU Backgammon’s 2-ply score, on the same 14,693 decisions.\n\n\n3. A cube model better than the Janowski formula — Planned\nThe doubling cube is half of competitive backgammon and the engine does not handle it at all today. Cubeful equity is currently approximated everywhere by the Janowski formula with a fitted cube-life index; a model trained to predict it directly should do better.\nThe bar: lower cube error than the Janowski implementations in current engines, on money-game double/take/pass decisions with rollout references.\n\n\n4. Match play — Planned\nEverything above is money game. Match play changes the objective: equity is measured in match-winning chances, which makes both checker play and cube decisions score-dependent.\nThe bar: match-equity-aware evaluation and cube handling, benchmarked on recorded match decisions rather than money-game ones.\n\n\n5. The engine behind a REST API — Planned\nThe board on this site is deliberately basic, and a polished interface is not something we plan to build. The better answer is to expose the engine cleanly and let people who build interfaces build them: positions in, ranked plays and equities out, over HTTP, with no Python to install.\nThe bar: a documented, stable, public endpoint that a front-end developer can build a real product against. If that is you, tell us what you need from it — this milestone is much easier to design with a first consumer in the room.\n\nFor what has already shipped and when, see the changelog. For the experiments behind each step, including the ones that did not work, see research.raccoonbg.com."
   },
   {
     "objectID": "terms.html",
