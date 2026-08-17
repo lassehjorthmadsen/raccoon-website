@@ -19,7 +19,7 @@ The board below is the engine itself, not a video of it. Roll, and it plays you.
 
 ::: {.app-fallback}
 The board above needs JavaScript and WebAssembly. Everything else on this site
-works without them, and the engine also runs [in a terminal](how.qmd).
+works without them, and the engine's code also runs [in a terminal](how.qmd).
 :::
 
 ## What you can do today
@@ -29,8 +29,8 @@ works without them, and the engine also runs [in a terminal](how.qmd).
   win/gammon/backgammon split — [open the analyser](analyse.qmd).
 - **Bring your own positions** with XGID import and export, the format XG and
   GNU Backgammon already speak.
-- **Run the same engine locally**, from a terminal or from your own tool — it is
-  MIT-licensed Python and PyTorch. [How it works](how.qmd).
+- **Read and run the code** — the engine is MIT-licensed Python and PyTorch,
+  though the trained weights ship separately. [How it works](how.qmd).
 
 Everything happens on your machine: the network's weights are downloaded once
 and evaluated locally, so nothing you play is ever sent anywhere.

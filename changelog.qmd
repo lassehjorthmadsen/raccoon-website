@@ -3,6 +3,16 @@ title: "Changelog"
 subtitle: "What shipped, when"
 ---
 
+## 2026-08 — Corrected: what you can run outside the browser
+
+- **Corrected claim:** the site said "the engine that plays you here is the one
+  you can download" and that `make play` plays you against Raccoon. The trained
+  weights are not in the engine repository, and `make play` without a checkpoint
+  quietly starts an *untrained* network. [How it works](how.qmd) now says so, and
+  points at the ONNX file this site actually runs, which is published in the
+  website repository. Wiring the Python engine up to load it is part of
+  [milestone 5](roadmap.qmd).
+
 ## 2026-08 — The board looks like a backgammon board
 
 - **Checkers no longer overlap.** A point is now exactly five checker diameters

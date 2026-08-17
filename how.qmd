@@ -30,8 +30,7 @@ for the PyTorch checkpoint it came from. [The numbers in full](strength.qmd).
 
 ## Run it yourself
 
-The engine that plays you here is the one you can download. It is MIT-licensed
-Python and PyTorch, with game rules from
+The code is MIT-licensed Python and PyTorch, with game rules from
 [OpenSpiel](https://openspiel.readthedocs.io/).
 
 ```bash
@@ -39,8 +38,17 @@ git clone https://github.com/lassehjorthmadsen/raccoon.git
 cd raccoon
 make setup          # editable install with dev dependencies
 make test           # run the test suite
-make play           # play against Raccoon in the terminal
+make play           # starts an untrained network — see the note below
 ```
+
+**The trained weights are not in that repository**, and `make play` without a
+checkpoint quietly starts an untrained network that will play badly. The network
+this site actually runs *is* published — `{{< var engine.network >}}-fp32.onnx`
+under `app/models/` in the [website repository]({{< var repo.website >}}), the
+same file measured at PR {{< var engine.onnx_pr >}} — but loading it from the
+Python engine is not wired up yet. If you want to run the measured network
+outside a browser, [get in touch](who.qmd); [milestone 5](roadmap.qmd) is about
+exposing it over HTTP so this stops being a caveat.
 
 ## Embedding it
 

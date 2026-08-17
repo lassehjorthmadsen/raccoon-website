@@ -12,8 +12,9 @@ both sides, so you can set up a position and ask what the network makes of it.
 :::
 
 ::: {.app-fallback}
-The analyser needs JavaScript and WebAssembly. The same engine runs
-[in a terminal](how.qmd).
+The analyser needs JavaScript and WebAssembly. The engine's code also runs
+[in a terminal](how.qmd), though loading the trained network there is not
+wired up yet.
 :::
 
 **Bring a position.** Paste an XGID from XG, GNU Backgammon or Backgammon Galaxy

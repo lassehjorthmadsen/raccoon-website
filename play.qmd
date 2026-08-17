@@ -15,8 +15,9 @@ consume; [get in touch](who.qmd), and see
 :::
 
 ::: {.app-fallback}
-The board needs JavaScript and WebAssembly. The same engine runs
-[in a terminal](how.qmd) if you would rather not use a browser.
+The board needs JavaScript and WebAssembly. The engine's code also runs
+[in a terminal](how.qmd), though loading the trained network there is not
+wired up yet.
 :::
 
 ## How to play
