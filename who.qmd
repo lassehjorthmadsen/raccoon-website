@@ -79,4 +79,4 @@ We are especially interested in hearing from:
 | Country | {{< var company.country >}} |
 | Contact | [{{< var company.email >}}](mailto:{{< var company.email >}}) |
 | Product | Raccoon Backgammon — [play it here](play.qmd) |
-| Status | Pre-revenue research and development; the engine is free and open source |
+| Status | Pre-revenue research and development; the engine is open source |

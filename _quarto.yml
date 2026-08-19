@@ -20,7 +20,7 @@ project:
 
 website:
   title: "Raccoon Backgammon"
-  description: "A free, open neural engine for backgammon — play it and analyse positions in your browser, nothing to install"
+  description: "An open neural engine for backgammon — play it and analyse positions in your browser, nothing to install"
   site-url: https://raccoonbg.com
   favicon: app/assets/favicon.svg
   open-graph: true

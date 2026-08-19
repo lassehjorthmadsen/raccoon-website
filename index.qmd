@@ -8,7 +8,7 @@ pagetitle: "Raccoon Backgammon — a modern neural engine you can play in your b
 Backgammon's strongest engines were built in the 1990s. Raccoon is a rebuild with
 the methods that have since transformed chess and Go — a deep residual network
 trained by large-scale distillation. It plays stronger backgammon than GNU
-Backgammon's own network, it is free and open source, and it runs entirely on
+Backgammon's own network, it is open source, and it runs entirely on
 your machine. No account, no server, nothing to install.
 :::
 
@@ -43,9 +43,10 @@ commercial engines that beat them are closed and paid. Then the field moved on �
 residual networks, large-scale distillation, search guided by learned values — and
 almost none of it was ever brought back to backgammon.
 
-Raccoon's goal is to close that gap and give the result away: a modern, measurably
-stronger backgammon engine that any player, teacher or tool author can use for
-free. Every step is measured against a named opponent on a metric fixed before the
+Raccoon's goal is to close that gap in the open: a modern, measurably stronger
+backgammon engine that any player, teacher or tool author can use, with the
+method published rather than locked up. Every step is measured against a named
+opponent on a metric fixed before the
 run, and published in full — including the experiments that failed — at
 [research.raccoonbg.com](https://research.raccoonbg.com).
 

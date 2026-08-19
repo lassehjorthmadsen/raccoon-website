@@ -3,6 +3,15 @@ title: "Changelog"
 subtitle: "What shipped, when"
 ---
 
+## 2026-08 — Corrected: the site no longer promises to stay free
+
+- **"Free" removed from the description of the project.** The engine is open
+  source and that has not changed, but the site had also promised the service
+  itself was free, which is not something we can commit to: hosting, bandwidth
+  and compute cost money, and a small fee may eventually be needed to cover
+  them. [Terms of use](terms.qmd) now says plainly what it costs today — nothing
+  — and that a change would be announced here first.
+
 ## 2026-08 — Corrected: what you can run outside the browser
 
 - **Corrected claim:** the site said "the engine that plays you here is the one

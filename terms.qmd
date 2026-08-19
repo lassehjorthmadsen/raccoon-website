@@ -2,10 +2,16 @@
 title: "Terms of use"
 ---
 
-*Last updated: 13 August 2026*
+*Last updated: 19 August 2026*
 
-Raccoon Backgammon is provided free of charge by {{< var company.name >}}
+Raccoon Backgammon is published by {{< var company.name >}}
 (CVR {{< var company.cvr >}}, {{< var company.country >}}).
+
+**What it costs.** Nothing today. Hosting, bandwidth and the compute behind the
+engine are not free to us, so we may charge for parts of the service in future.
+Any such change will be announced here and in the [changelog](changelog.qmd)
+before it takes effect, and it does not affect the licence below: the code and
+weights you already have stay yours on the terms you got them under.
 
 **The engine is open source.** The source code, training pipelines and network
 weights are published under the [MIT licence](https://github.com/lassehjorthmadsen/raccoon/blob/main/LICENSE).
