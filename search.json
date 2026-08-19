@@ -39,7 +39,7 @@
     "href": "who.html#company-details",
     "title": "Who",
     "section": "Company details",
-    "text": "Company details\n\n\n\nLegal name\nTekst og tal\n\n\nRegistration\nCVR 34101302 (public record)\n\n\nCountry\nDenmark\n\n\nContact\nhello@raccoonbg.com\n\n\nProduct\nRaccoon Backgammon — play it here\n\n\nStatus\nPre-revenue research and development; the engine is free and open source"
+    "text": "Company details\n\n\n\nLegal name\nTekst og tal\n\n\nRegistration\nCVR 34101302 (public record)\n\n\nCountry\nDenmark\n\n\nContact\nhello@raccoonbg.com\n\n\nProduct\nRaccoon Backgammon — play it here\n\n\nStatus\nPre-revenue research and development; the engine is open source"
   },
   {
     "objectID": "strength.html",
@@ -116,7 +116,7 @@
     "href": "index.html",
     "title": "Raccoon Backgammon",
     "section": "",
-    "text": "Backgammon’s strongest engines were built in the 1990s. Raccoon is a rebuild with the methods that have since transformed chess and Go — a deep residual network trained by large-scale distillation. It plays stronger backgammon than GNU Backgammon’s own network, it is free and open source, and it runs entirely on your machine. No account, no server, nothing to install.\nThe board below is the engine itself, not a video of it. Roll, and it plays you."
+    "text": "Backgammon’s strongest engines were built in the 1990s. Raccoon is a rebuild with the methods that have since transformed chess and Go — a deep residual network trained by large-scale distillation. It plays stronger backgammon than GNU Backgammon’s own network, it is open source, and it runs entirely on your machine. No account, no server, nothing to install.\nThe board below is the engine itself, not a video of it. Roll, and it plays you."
   },
   {
     "objectID": "index.html#what-you-can-do-today",
@@ -130,7 +130,7 @@
     "href": "index.html#why-build-it",
     "title": "Raccoon Backgammon",
     "section": "Why build it",
-    "text": "Why build it\nBackgammon was one of machine learning’s early triumphs. TD-Gammon reached expert play in 1992, GNU Backgammon followed the same recipe as free software, and the commercial engines that beat them are closed and paid. Then the field moved on — residual networks, large-scale distillation, search guided by learned values — and almost none of it was ever brought back to backgammon.\nRaccoon’s goal is to close that gap and give the result away: a modern, measurably stronger backgammon engine that any player, teacher or tool author can use for free. Every step is measured against a named opponent on a metric fixed before the run, and published in full — including the experiments that failed — at research.raccoonbg.com."
+    "text": "Why build it\nBackgammon was one of machine learning’s early triumphs. TD-Gammon reached expert play in 1992, GNU Backgammon followed the same recipe as free software, and the commercial engines that beat them are closed and paid. Then the field moved on — residual networks, large-scale distillation, search guided by learned values — and almost none of it was ever brought back to backgammon.\nRaccoon’s goal is to close that gap in the open: a modern, measurably stronger backgammon engine that any player, teacher or tool author can use, with the method published rather than locked up. Every step is measured against a named opponent on a metric fixed before the run, and published in full — including the experiments that failed — at research.raccoonbg.com."
   },
   {
     "objectID": "index.html#where-it-stands",
@@ -144,14 +144,21 @@
     "href": "changelog.html",
     "title": "Changelog",
     "section": "",
-    "text": "Corrected claim: the site said “the engine that plays you here is the one you can download” and that make play plays you against Raccoon. The trained weights are not in the engine repository, and make play without a checkpoint quietly starts an untrained network. How it works now says so, and points at the ONNX file this site actually runs, which is published in the website repository. Wiring the Python engine up to load it is part of milestone 5."
+    "text": "“Free” removed from the description of the project. The engine is open source and that has not changed, but the site had also promised the service itself was free, which is not something we can commit to: hosting, bandwidth and compute cost money, and a small fee may eventually be needed to cover them. Terms of use now says plainly what it costs today — nothing — and that a change would be announced here first."
+  },
+  {
+    "objectID": "changelog.html#corrected-the-site-no-longer-promises-to-stay-free",
+    "href": "changelog.html#corrected-the-site-no-longer-promises-to-stay-free",
+    "title": "Changelog",
+    "section": "",
+    "text": "“Free” removed from the description of the project. The engine is open source and that has not changed, but the site had also promised the service itself was free, which is not something we can commit to: hosting, bandwidth and compute cost money, and a small fee may eventually be needed to cover them. Terms of use now says plainly what it costs today — nothing — and that a change would be announced here first."
   },
   {
     "objectID": "changelog.html#corrected-what-you-can-run-outside-the-browser",
     "href": "changelog.html#corrected-what-you-can-run-outside-the-browser",
     "title": "Changelog",
-    "section": "",
-    "text": "Corrected claim: the site said “the engine that plays you here is the one you can download” and that make play plays you against Raccoon. The trained weights are not in the engine repository, and make play without a checkpoint quietly starts an untrained network. How it works now says so, and points at the ONNX file this site actually runs, which is published in the website repository. Wiring the Python engine up to load it is part of milestone 5."
+    "section": "2026-08 — Corrected: what you can run outside the browser",
+    "text": "2026-08 — Corrected: what you can run outside the browser\n\nCorrected claim: the site said “the engine that plays you here is the one you can download” and that make play plays you against Raccoon. The trained weights are not in the engine repository, and make play without a checkpoint quietly starts an untrained network. How it works now says so, and points at the ONNX file this site actually runs, which is published in the website repository. Wiring the Python engine up to load it is part of milestone 5."
   },
   {
     "objectID": "changelog.html#the-board-looks-like-a-backgammon-board",
@@ -270,6 +277,6 @@
     "href": "terms.html",
     "title": "Terms of use",
     "section": "",
-    "text": "Last updated: 13 August 2026\nRaccoon Backgammon is provided free of charge by Tekst og tal (CVR 34101302, Denmark).\nThe engine is open source. The source code, training pipelines and network weights are published under the MIT licence. You may use, modify and redistribute them on those terms, including commercially.\nThis website is provided as is. It runs entirely in your browser and makes no guarantee of availability, accuracy or fitness for a particular purpose. The engine plays cubeless money-game backgammon and does not yet handle the doubling cube; its analysis is a research tool, not authoritative instruction.\nNo warranty, no liability. To the extent permitted by law, Tekst og tal is not liable for any loss arising from use of this site or the engine.\nContact — hello@raccoonbg.com."
+    "text": "Last updated: 19 August 2026\nRaccoon Backgammon is published by Tekst og tal (CVR 34101302, Denmark).\nWhat it costs. Nothing today. Hosting, bandwidth and the compute behind the engine are not free to us, so we may charge for parts of the service in future. Any such change will be announced here and in the changelog before it takes effect, and it does not affect the licence below: the code and weights you already have stay yours on the terms you got them under.\nThe engine is open source. The source code, training pipelines and network weights are published under the MIT licence. You may use, modify and redistribute them on those terms, including commercially.\nThis website is provided as is. It runs entirely in your browser and makes no guarantee of availability, accuracy or fitness for a particular purpose. The engine plays cubeless money-game backgammon and does not yet handle the doubling cube; its analysis is a research tool, not authoritative instruction.\nNo warranty, no liability. To the extent permitted by law, Tekst og tal is not liable for any loss arising from use of this site or the engine.\nContact — hello@raccoonbg.com."
   }
 ]
