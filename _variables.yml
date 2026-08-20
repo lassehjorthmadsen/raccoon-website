@@ -20,7 +20,7 @@ repo:
   engine: "https://github.com/lassehjorthmadsen/raccoon"
   website: "https://github.com/lassehjorthmadsen/raccoon-website"
 
-# Every number below is a measurement recorded in ../raccoon. Change it here,
+# Every number below is a measurement recorded in the raccoon repo. Change it here,
 # never in prose, and only against a result file in that repo.
 engine:
   network: "exp018-ep22"

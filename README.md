@@ -34,13 +34,19 @@ quarto preview  # the site
 
 ## Refreshing the model and fixtures
 
-Both are generated from the raccoon repo, which holds the weights and OpenSpiel:
+Both are generated from the raccoon repo, which holds the weights and OpenSpiel.
+That repo lives in WSL at `/home/lmdn/raccoon`, so run this inside WSL — the exports
+need its Linux virtualenv. The scripts assume the two repos are siblings, which they
+are not here, so point `RACCOON_WEBSITE` at this checkout first:
 
 ```bash
-cd ../raccoon
+# Quote it: the path has a space in it.
+export RACCOON_WEBSITE="/mnt/c/Users/LMDN/OneDrive - Novo Nordisk/Python-Projects/raccoon-website"
+
+cd ~/raccoon
 python scripts/export_web_model.py --checkpoint experiments/exp018-distill/checkpoints/ep22.pt
 python scripts/export_web_fixtures.py
-python scripts/eval_benchmark_pr.py --onnx ../raccoon-website/app/models/exp018-ep22-fp32.onnx
+python scripts/eval_benchmark_pr.py --onnx "$RACCOON_WEBSITE/app/models/exp018-ep22-fp32.onnx"
 ```
 
 The last command re-scores the exported file on the BGSage benchmark. Quote
